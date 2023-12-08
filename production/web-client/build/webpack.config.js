@@ -50,9 +50,8 @@ module.exports = {
       {
         test: /\.(css|sass|scss)$/i,
         use: [
-          MiniCssExtractPlugin.loader,
+          isDevelopment ? 'style-loader' : MiniCssExtractPlugin.loader,
           'css-loader',
-          'sass-loader',
           {
             loader: 'postcss-loader',
             options: {
@@ -71,7 +70,8 @@ module.exports = {
                 ]
               }
             }
-          }
+          },
+          'sass-loader'
         ]
       },
       !isDevelopment && {
