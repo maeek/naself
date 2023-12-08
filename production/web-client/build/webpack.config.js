@@ -25,6 +25,7 @@ const resolveTsConfigPathsToAlias = compilerOptions => {
 
 const isDevelopment = process.env.NODE_ENV !== 'production';
 
+/** @type {import('webpack').Configuration} */
 module.exports = {
   mode: isDevelopment ? 'development' : 'production',
   entry: './src/index.tsx',

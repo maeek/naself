@@ -1,5 +1,6 @@
 const path = require('path');
 
+/** @type {import('@types/eslint').Linter.Config} */
 module.exports = {
   parser: '@typescript-eslint/parser',
   extends: [
@@ -42,8 +43,7 @@ module.exports = {
       plugins: ['jest', 'testing-library'],
       extends: ['plugin:jest/recommended', 'plugin:testing-library/react'],
       rules: {
-        'testing-library/render-result-naming-convention': 'off',
-        'react/react-in-jsx-scope': 'error'
+        'testing-library/render-result-naming-convention': 'off'
       }
     }
   ],
