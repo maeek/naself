@@ -1,28 +1,32 @@
+/* eslint-disable node/no-unpublished-require */
 const path = require('path');
-const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const autoprefixer = require('autoprefixer');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const cssnano = require('cssnano');
 const { EsbuildPlugin } = require('esbuild-loader');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const webpack = require('webpack');
 const tsConfig = require('../tsconfig.json');
 
-const resolveTsConfigPathsToAlias = (compilerOptions) => {
+const resolveTsConfigPathsToAlias = compilerOptions => {
   const { paths } = compilerOptions;
   const aliases = {};
 
-  Object.keys(paths).forEach((item) => {
+  Object.keys(paths).forEach(item => {
     const key = item.replace('/*', '');
-    const value = path.resolve(__dirname, paths[ item ][ 0 ].replace('/*', '').replace('*', ''));
-    aliases[ key ] = value;
+    const value = path.resolve(__dirname, paths[item][0].replace('/*', '').replace('*', ''));
+    aliases[key] = value;
   });
 
   return aliases;
 };
 
+const isDevelopment = process.env.NODE_ENV !== 'production';
+
 module.exports = {
-  mode: 'production',
+  mode: isDevelopment ? 'development' : 'production',
   entry: './src/index.tsx',
   output: {
     path: path.resolve('dist'),
@@ -40,7 +44,7 @@ module.exports = {
       {
         test: /\.svg$/i,
         issuer: /\.[jt]sx?$/,
-        use: [ '@svgr/webpack' ]
+        use: ['@svgr/webpack']
       },
       {
         test: /\.(css|sass|scss)$/i,
@@ -69,45 +73,49 @@ module.exports = {
           }
         ]
       },
-      {
+      !isDevelopment && {
         // Match `.js`, `.jsx`, `.ts` or `.tsx` files
         test: /\.[jt]sx?$/,
         loader: 'esbuild-loader',
         options: {
-          // JavaScript version to compile to
           target: 'es2015'
         }
+      },
+      isDevelopment && {
+        test: /\.(ts|js)x?$/i,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            plugins: [isDevelopment && require.resolve('react-refresh/babel')].filter(Boolean),
+            presets: [
+              [
+                '@babel/preset-env',
+                {
+                  targets: {
+                    browsers: 'last 2 versions'
+                  },
+                  modules: false,
+                  loose: false
+                }
+              ],
+              ['@babel/preset-react', { runtime: 'automatic' }],
+              '@babel/preset-typescript'
+            ]
+          }
+        }
       }
-      // {
-      //   test: /\.(ts|js)x?$/i,
-      //   exclude: /node_modules/,
-      //   use: {
-      //     loader: 'babel-loader',
-      //     options: {
-      //       presets: [
-      //         [ '@babel/preset-env', {
-      //           targets: {
-      //             browsers: 'last 2 versions'
-      //           },
-      //           modules: false,
-      //           loose: false
-      //         } ],
-      //         [ '@babel/preset-react', { runtime: 'automatic' } ],
-      //         '@babel/preset-typescript'
-      //       ]
-      //     }
-      //   }
-      // }
-    ]
+    ].filter(Boolean)
   },
   resolve: {
-    extensions: [ '.tsx', '.ts', '.js', '.jsx' ],
+    extensions: ['.tsx', '.ts', '.js', '.jsx'],
     alias: resolveTsConfigPathsToAlias(tsConfig.compilerOptions)
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: 'public/index.html',
       inject: true,
+      hash: true,
       minify: {
         removeComments: true,
         collapseWhitespace: true
@@ -115,18 +123,25 @@ module.exports = {
     }),
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin(),
-    new webpack.DefinePlugin({
-      'process.env': JSON.stringify(process.env)
+    new EsbuildPlugin({
+      define: {
+        'process.env': JSON.stringify(process.env)
+      }
     }),
     new webpack.LoaderOptionsPlugin({
       minimize: true
-    })
-  ],
+    }),
+    isDevelopment && new ReactRefreshWebpackPlugin()
+  ].filter(Boolean),
   optimization: {
-    minimize: true,
+    minimize: !isDevelopment,
+    usedExports: true,
     minimizer: [
       new EsbuildPlugin({
-        target: 'es2015'  // Syntax to transpile to (see options below for possible values)
+        target: 'es2015',
+        minify: true,
+        treeShaking: true,
+        css: true
       })
     ],
     splitChunks: {
@@ -140,5 +155,9 @@ module.exports = {
         }
       }
     }
+  },
+  devServer: {
+    port: 3000,
+    hot: true
   }
 };

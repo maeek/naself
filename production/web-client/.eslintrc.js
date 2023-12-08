@@ -1,15 +1,53 @@
+const path = require('path');
+
 module.exports = {
   parser: '@typescript-eslint/parser',
   extends: [
     'eslint:recommended',
     'prettier',
+    'plugin:import/recommended',
+    'plugin:jsx-a11y/recommended',
     'plugin:react/recommended',
     'plugin:react-hooks/recommended',
     'plugin:@typescript-eslint/eslint-recommended',
     'plugin:testing-library/react'
   ],
-  plugins: [ 'react', 'prettier', '@typescript-eslint' ],
+  plugins: ['react', 'prettier', '@typescript-eslint', 'jsx-a11y'],
+  overrides: [
+    {
+      files: ['*.ts', '*.tsx'],
+      excludedFiles: ['.test.ts', '.test.tsx'],
+      extends: [
+        'plugin:@typescript-eslint/eslint-recommended',
+        'plugin:@typescript-eslint/recommended-requiring-type-checking'
+      ],
+      parserOptions: {
+        project: path.resolve(__dirname, './tsconfig.json')
+      },
+      rules: {
+        '@typescript-eslint/no-non-null-assertion': 'off',
+        '@typescript-eslint/unbound-method': 'off',
+        '@typescript-eslint/no-namespace': 'off',
+        'react/react-in-jsx-scope': 'off'
+      }
+    },
+    {
+      files: ['*.js'],
+      plugins: ['node'],
+      extends: ['plugin:node/recommended']
+    },
+    {
+      files: ['*.test.ts', '*.test.tsx'],
+      plugins: ['jest', 'testing-library'],
+      extends: ['plugin:jest/recommended', 'plugin:testing-library/react'],
+      rules: {
+        'testing-library/render-result-naming-convention': 'off',
+        'react/react-in-jsx-scope': 'error'
+      }
+    }
+  ],
   env: {
+    browser: true,
     node: true
   },
   parserOptions: {
@@ -22,9 +60,12 @@ module.exports = {
   settings: {
     'import/resolver': {
       node: {
-        extensions: [ '.js', '.jsx', '.ts', '.tsx' ]
+        extensions: ['.js', '.jsx', '.ts', '.tsx']
       },
-      typescript: {}
+      typescript: {
+        alwaysTryTypes: true,
+        project: path.resolve(__dirname, './tsconfig.json')
+      }
     },
     react: {
       version: 'detect'
@@ -36,51 +77,51 @@ module.exports = {
     __PROD__: 'readonly'
   },
   rules: {
-    semi: [ 'error', 'always' ],
-    quotes: [ 'error', 'single' ],
-    'no-console': [
-      'warn',
+    'max-len': ['error', { code: 120, ignoreComments: true, ignoreUrls: true, ignoreStrings: true }],
+    'linebreak-style': 'off',
+    'no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+    '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+    'arrow-parens': 'off',
+    'no-console': ['error', { allow: ['warn', 'error'] }],
+    'no-shadow': 'off',
+    '@typescript-eslint/no-shadow': ['error'],
+    '@typescript-eslint/type-annotation-spacing': ['error'],
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
+    '@typescript-eslint/comma-dangle': 'off',
+    'react/prop-types': 'off',
+    'react/display-name': 'off',
+    'react/function-component-definition': 'off',
+    'jsx-quotes': ['warn', 'prefer-single'],
+    'prettier/prettier': 'error',
+    'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
+    'import/named': 'off',
+    'import/no-unresolved': 'error',
+    'import/extensions': [
+      'error',
+      'ignorePackages',
       {
-        allow: [ 'warn', 'error' ]
+        jsx: 'never',
+        ts: 'never',
+        tsx: 'never',
+        js: 'never'
       }
     ],
-    'comma-dangle': [ 'error', 'never' ],
-    indent: [ 'error', 2 ],
-    'guard-for-in': 0,
-    'no-param-reassign': 0,
-    'react/require-default-props': 0,
-    'jsx-quotes': 0,
-    'react/prop-types': 0,
-    'react/jsx-no-undef': 0,
-    'react/jsx-fragments': 0,
-    'react/no-unused-prop-types': 1,
-    'react/react-in-jsx-scope': 0,
-    'import/export': 0,
-    'prettier/prettier': 0,
-    'linebreak-style': 0,
-    'no-multiple-empty-lines': [ 'error', { max: 1, maxEOF: 0 } ],
-    'eol-last': 2,
-    'object-curly-spacing': [ 'error', 'always' ],
-    'array-bracket-spacing': [ 'error', 'always' ],
-    'computed-property-spacing': [ 'error', 'always' ],
-    'quote-props': [ 'error', 'as-needed' ],
-    'max-len': [
+    'import/order': [
       'error',
       {
-        code: 120,
-        ignoreUrls: true,
-        ignoreTrailingComments: true,
-        ignoreStrings: true
+        alphabetize: { order: 'asc', caseInsensitive: true },
+        pathGroupsExcludedImportTypes: ['react'],
+        warnOnUnassignedImports: true,
+        'newlines-between': 'never',
+        groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'object', 'type'],
+        pathGroups: [
+          { pattern: 'react', group: 'builtin', position: 'before' },
+          { pattern: '**/*.scss', group: 'type', position: 'after' },
+          { pattern: './*.scss', group: 'type', position: 'after' },
+          { pattern: '**/*.css', group: 'type', position: 'after' }
+        ]
       }
     ],
-    '@typescript-eslint/no-unused-vars': [
-      1,
-      {
-        args: 'none'
-      }
-    ],
-    'react/no-unescaped-entities': 0,
-    'no-unused-vars': 1,
-    'react/display-name': 0
+    'eol-last': 'error'
   }
 };
