@@ -1,0 +1,12 @@
+.properties__title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.properties__list {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.7rem;
+  width: 100%;
+}

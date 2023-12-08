@@ -1,0 +1,17 @@
+.property {
+  display: flex;
+  flex-direction: row;
+  justify-content: stretch;
+  color: var(--clr-secondary-text);
+  font-size: 0.9rem;
+  font-weight: 400;
+
+  .property__name {
+    min-width: 6.75rem;
+    margin-right: 1rem;
+  }
+
+  .property__value {
+    display: flex;
+  }
+}
