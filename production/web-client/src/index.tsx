@@ -1,5 +1,5 @@
 import React from 'react';
-import { setupWorker } from 'msw/browser';
+import { setupWorker } from 'msw';
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { App } from './app';

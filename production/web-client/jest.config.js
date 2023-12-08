@@ -1,52 +1,37 @@
+/** @type {import('jest').Config} */
 module.exports = {
-  collectCoverageFrom: [
-    'src/**/*.{js,jsx,ts,tsx}',
-    '!src/**/*.d.ts'
-  ],
-  moduleFileExtensions: [
-    'web.js',
-    'js',
-    'web.ts',
-    'ts',
-    'web.tsx',
-    'tsx',
-    'json',
-    'web.jsx',
-    'jsx',
-    'node'
-  ],
+  verbose: true,
+  coverageReporters: ['json-summary', 'lcov', 'text'],
+  collectCoverageFrom: ['src/**/*.{js,jsx,ts,tsx}', '!src/**/*.d.ts', '!**/node_modules/**'],
+  moduleFileExtensions: ['js', 'ts', 'tsx', 'jsx', 'node'],
   moduleNameMapper: {
-    '^.+\\.module\\.(css|sass|scss)$': 'identity-obj-proxy',
+    '\\.(jpg|jpeg|png|wav|mp3|gif|svg|m4a|aac|ogg|ttf|woff|woff2|mp4|webm)$': 'identity-obj-proxy',
+    '\\.(css|sass|scss)$': 'jest-css-modules',
     '^@/(.*)': '<rootDir>/src/$1'
   },
-  modulePaths: [],
   resetMocks: true,
-  roots: [
-    '<rootDir>/src'
-  ],
-  resolver: '',
-  setupFiles: [
-    'react-app-polyfill/jsdom'
-  ],
-  setupFilesAfterEnv: [
-    '<rootDir>/src/setup-tests.ts'
-  ],
+  roots: ['<rootDir>/src'],
+  setupFilesAfterEnv: ['<rootDir>/src/setup-tests.tsx'],
   testEnvironment: 'jsdom',
-  testMatch: [
-    '<rootDir>/src/**/__tests__/**/*.{js,jsx,ts,tsx}',
-    '<rootDir>/src/**/*.{spec,test}.{js,jsx,ts,tsx}'
-  ],
   transform: {
-    '^.+\\.(js|jsx|mjs|cjs|ts|tsx)$': '<rootDir>/config/jest/babelTransform.js',
-    '^.+\\.css$': '<rootDir>/config/jest/cssTransform.js',
-    '^(?!.*\\.(js|jsx|mjs|cjs|ts|tsx|css|json)$)': '<rootDir>/config/jest/fileTransform.js'
+    '^.+\\.(js|jsx|mjs|cjs|ts|tsx)$': [
+      'ts-jest',
+      {
+        diagnostics: false
+      }
+    ]
   },
-  transformIgnorePatterns: [
-    '[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs|cjs|ts|tsx)$',
-    '^.+\\.module\\.(css|sass|scss)$'
-  ],
-  watchPlugins: [
-    'jest-watch-typeahead/filename',
-    'jest-watch-typeahead/testname'
-  ]
+  watchPlugins: ['jest-watch-typeahead/filename', 'jest-watch-typeahead/testname'],
+  testEnvironmentOptions: {
+    /**
+     * @note Opt-out from JSDOM using browser-style resolution
+     * for dependencies. This is simply incorrect, as JSDOM is
+     * not a browser, and loading browser-oriented bundles in
+     * Node.js will break things.
+     *
+     * Consider migrating to a more modern test runner if you
+     * don't want to deal with this.
+     */
+    customExportConditions: ['']
+  }
 };

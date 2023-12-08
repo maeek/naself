@@ -1,7 +1,7 @@
-import { HttpResponse, RequestHandler, http } from 'msw';
+import { RestHandler, rest } from 'msw';
 
-export const handlers: RequestHandler[] = [
-  http.get('/api/system/status', () => {
-    return HttpResponse.json({ status: 'ok' }, { status: 200 });
+export const handlers: RestHandler[] = [
+  rest.get('/api/system/status', (req, res, ctx) => {
+    return res(ctx.status(200), ctx.json({ status: 'ok' }));
   })
 ];
