@@ -12,7 +12,7 @@ module.exports = {
     'plugin:@typescript-eslint/eslint-recommended',
     'plugin:testing-library/react'
   ],
-  plugins: ['react', 'prettier', '@typescript-eslint', 'jsx-a11y'],
+  plugins: ['react', 'prettier', '@typescript-eslint', 'jsx-a11y', 'import', 'react-hooks', 'testing-library'],
   overrides: [
     {
       files: ['*.ts', '*.tsx'],
@@ -22,7 +22,8 @@ module.exports = {
         'plugin:@typescript-eslint/recommended-requiring-type-checking'
       ],
       parserOptions: {
-        project: path.resolve(__dirname, './tsconfig.json')
+        project: path.resolve(__dirname, './tsconfig.json'),
+        tsconfigRootDir: __dirname
       },
       rules: {
         '@typescript-eslint/no-non-null-assertion': 'off',
@@ -64,7 +65,7 @@ module.exports = {
       },
       typescript: {
         alwaysTryTypes: true,
-        project: path.resolve(__dirname, './tsconfig.json')
+        project: './tsconfig.json'
       }
     },
     react: {

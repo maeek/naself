@@ -1,5 +1,5 @@
 {
-  "name": "@maeek/neutrino-chat",
+  "name": "@maeek/naself-web",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -26,6 +26,7 @@
   },
   "proxy": "http://localhost:8080/api/",
   "dependencies": {
+    "@reduxjs/toolkit": "^2.0.1",
     "classnames": "^2.3.2",
     "dayjs": "^1.11.10",
     "focus-visible": "^5.2.0",
@@ -68,6 +69,7 @@
     "cssnano": "^6.0.1",
     "esbuild-loader": "^4.0.2",
     "eslint-config-prettier": "^9.1.0",
+    "eslint-import-resolver-typescript": "^3.6.1",
     "eslint-plugin-import": "^2.29.0",
     "eslint-plugin-jest": "^27.6.0",
     "eslint-plugin-jsx-a11y": "^6.8.0",
