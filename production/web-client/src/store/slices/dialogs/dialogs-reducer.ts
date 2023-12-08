@@ -10,7 +10,7 @@ export interface Dialog {
   acknowledgeActions?: UnknownAction[];
 }
 
-const dialogsAdapter = createEntityAdapter();
+export const dialogsAdapter = createEntityAdapter();
 
 const dialogsSlice = createSlice({
   name: 'dialogs',
