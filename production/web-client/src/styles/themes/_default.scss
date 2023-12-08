@@ -1,0 +1,30 @@
+$colors-dark: (
+  background: #1e2129,
+  background-lighter: #293542,
+  background-darker: #1b1c22,
+  semi-transparent-background: rgba(#000, 0.3),
+  primary-text: #fff,
+  secondary-text: #d9e0e8,
+  placeholder-text: #a1a8b0,
+  // Primary
+  accent: #007fff,
+  light-accent: #7dbaf6,
+  accent-border: rgba(#007fff, 0.66),
+  // Red
+  red: #ff7777,
+  red-lighter: lighten(#ff7777, 20%),
+  red-darker: darken(#ff7777, 20%),
+  red-transparent: rgba(#ff7777, 0.33),
+  // Yellow
+  yellow: #d28f0b,
+  // Green
+  green: #00ffd1,
+  green-lighter: lighten(#00ffd1, 20%),
+  green-darker: darken(#00ffd1, 20%),
+  green-transparent: rgba(#00ffd1, 0.33),
+  // Gray
+  gray: #687c90,
+  gray-lighter: lighten(#687c90, 20%),
+  gray-darker: darken(#687c90, 20%),
+  gray-transparent: rgba(#687c90, 0.33)
+);

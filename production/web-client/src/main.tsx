@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import { App } from './app';
 import { handlers } from './mocks/handlers';
 import { store } from './store';
+import './styles/main.scss';
 
 if (process.env.NODE_ENV === 'development') {
   const worker = setupWorker(...handlers);

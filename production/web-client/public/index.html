@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 
 <head>
   <meta charset="utf-8" />
@@ -19,14 +19,11 @@
   <link rel="manifest" href="/manifest.json" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
-      font-family: "Inter", "Helvetica Neue", -apple-system, BlinkMacSystemFont, Helvetica, Ubuntu, Roboto, Noto, "Segoe UI", Arial, sans-serif;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      background: #25292F;
+      background: var(--clr-background-darker, #1b1c22);
       position: relative;
       min-height: 100%;
     }
@@ -37,7 +34,5 @@
 <body>
   <noscript>You need to enable JavaScript to run this app.</noscript>
   <div id="root"></div>
-  <div id="modal-root"></div>
-  <div id="connection-root"></div>
 </body>
 </html>
