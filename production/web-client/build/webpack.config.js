@@ -16,7 +16,7 @@ const resolveTsConfigPathsToAlias = compilerOptions => {
 
   Object.keys(paths).forEach(item => {
     const key = item.replace('/*', '');
-    const value = path.resolve(__dirname, paths[item][0].replace('/*', '').replace('*', ''));
+    const value = path.resolve(__dirname, '..', paths[item][0].replace('/*', '').replace('*', ''));
     aliases[key] = value;
   });
 
@@ -158,6 +158,7 @@ module.exports = {
   },
   devServer: {
     port: 3000,
-    hot: true
+    hot: isDevelopment,
+    server: 'spdy'
   }
 };

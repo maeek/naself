@@ -10,7 +10,10 @@
     ],
     "allowJs": true,
     "types": [
-      "@types/node"
+      "@types/node",
+      "@types/react",
+      "@types/react-dom",
+      "@types/jest"
     ],
     "skipLibCheck": true,
     "esModuleInterop": true,
