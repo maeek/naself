@@ -28,7 +28,7 @@ const isDevelopment = process.env.NODE_ENV !== 'production';
 /** @type {import('webpack').Configuration} */
 module.exports = {
   mode: isDevelopment ? 'development' : 'production',
-  entry: './src/index.tsx',
+  entry: './src/main.tsx',
   output: {
     path: path.resolve('dist'),
     filename: '[name].[contenthash].js',
