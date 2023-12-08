@@ -75,7 +75,6 @@ module.exports = {
         ]
       },
       !isDevelopment && {
-        // Match `.js`, `.jsx`, `.ts` or `.tsx` files
         test: /\.[jt]sx?$/,
         loader: 'esbuild-loader',
         options: {
