@@ -1,6 +1,6 @@
 import { ChangeEventHandler, InputHTMLAttributes, ReactNode, forwardRef } from 'react';
 import classNames from 'classnames';
-import './input.scss';
+import './text-input.scss';
 
 type InvalidReason = string;
 
@@ -16,7 +16,7 @@ export interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 
 }
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ prefix, suffix, className, validate, value, onChange, disabled, ...props }, ref) => {
+  ({ prefix, suffix, className, validate, value, onChange, disabled, type = 'text', ...props }, ref) => {
     const invalidCause = validate ? validate(value ?? '') : null;
     const invalid = validate ? !!invalidCause : null;
 
@@ -36,6 +36,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           {prefix ? <div className='input__prefix'>{prefix}</div> : null}
           <input
             {...props}
+            type={type}
             ref={ref}
             value={value}
             onChange={onChange}

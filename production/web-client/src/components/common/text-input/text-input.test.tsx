@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, fireEvent, screen } from '@testing-library/react';
-import { Input } from './input';
+import { Input } from './text-input';
 
 describe('Input', () => {
   it('renders without errors', () => {
