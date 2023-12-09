@@ -42,3 +42,7 @@ Object.defineProperty(window, 'location', {
   enumerable: true,
   value: new URL('https://localhost:3000/')
 });
+
+global.Element.prototype.getAnimations = function () {
+  return [];
+};
