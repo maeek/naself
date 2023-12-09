@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useState } from 'react';
+import { ReactNode, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { Spacer } from '@/components/common/spacer/spacer';
 import './tabs.scss';
 
@@ -11,12 +11,21 @@ export interface PropertiesTabsProps {
 
 export const PropertiesTabs = ({ options }: PropertiesTabsProps) => {
   const [activeTab, setActiveTab] = useState<string>();
+  const rendererRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!activeTab && options.length > 0) {
       setActiveTab(options[0].name);
     }
   }, [activeTab, options]);
+
+  useLayoutEffect(() => {
+    if (rendererRef.current) {
+      rendererRef.current.getAnimations().forEach(animation => {
+        animation.play();
+      });
+    }
+  }, [activeTab]);
 
   const content = options.find(option => option.name === activeTab)?.children ?? options[0].children;
 
@@ -36,7 +45,12 @@ export const PropertiesTabs = ({ options }: PropertiesTabsProps) => {
       </div>
       <div className='tabs__divider' />
       <Spacer size='medium' />
-      <div className='tabs__renderer'>{typeof content === 'function' ? content() : content}</div>
+      <div
+        className='tabs__renderer'
+        ref={rendererRef}
+      >
+        {typeof content === 'function' ? content() : content}
+      </div>
     </div>
   );
 };

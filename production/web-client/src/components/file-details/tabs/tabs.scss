@@ -48,4 +48,20 @@
     position: relative;
     z-index: -1;
   }
+
+  .tabs__renderer {
+    opacity: 0;
+    animation: fade-in 0.1s ease-in-out forwards;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+
+  to {
+    opacity: 1;
+  }
 }
