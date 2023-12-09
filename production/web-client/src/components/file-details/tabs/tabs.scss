@@ -6,29 +6,29 @@
     color: var(--clr-secondary-text);
     display: flex;
     flex-direction: row;
-    gap: 1rem;
-    padding: 0.5rem;
+    gap: 2.5rem;
+    padding: 0.5rem 0;
   }
 
   .tabs__tab {
-    min-width: 6rem;
     height: 2rem;
     width: auto;
     position: relative;
     outline-offset: 0.5rem;
     outline-color: var(--clr-accent);
     transition: outline-offset 0.1s ease-in-out;
+    font-weight: 500;
 
     &[data-selected='true'] {
-      font-weight: 700;
+      color: var(--clr-accent-lighten-1);
 
       &::after {
         content: '';
         transition: all 0.1s ease-in-out;
         position: absolute;
         top: 2.5rem;
-        left: -0.5rem;
-        width: 120%;
+        left: 0;
+        width: 100%;
         height: 0.2rem;
         background-color: var(--clr-accent);
         border-radius: 0.8rem;
@@ -43,9 +43,8 @@
   }
 
   .tabs__divider {
-    border-bottom: 0.2rem solid var(--clr-background-lighter);
+    border-bottom: 0.2rem solid var(--clr-background-lighten-1);
     border-radius: 0.8rem;
-    margin: 0 0 1.8rem 0;
     position: relative;
     z-index: -1;
   }

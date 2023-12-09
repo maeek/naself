@@ -1,10 +1,11 @@
 import { ReactNode, useEffect, useState } from 'react';
+import { Spacer } from '@/components/common/spacer/spacer';
 import './tabs.scss';
 
 export interface PropertiesTabsProps {
   options: {
     name: string;
-    children: ReactNode;
+    children: ReactNode | (() => ReactNode);
   }[];
 }
 
@@ -34,7 +35,8 @@ export const PropertiesTabs = ({ options }: PropertiesTabsProps) => {
         ))}
       </div>
       <div className='tabs__divider' />
-      <div className='tabs__renderer'>{content}</div>
+      <Spacer size='medium' />
+      <div className='tabs__renderer'>{typeof content === 'function' ? content() : content}</div>
     </div>
   );
 };
