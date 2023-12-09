@@ -2,7 +2,7 @@ import './properties-list.scss';
 
 export interface PropertyListProps {
   title?: string;
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }
 
 export const PropertyList = ({ title, children }: PropertyListProps) => {
