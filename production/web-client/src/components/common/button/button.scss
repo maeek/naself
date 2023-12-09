@@ -19,7 +19,7 @@ button.button {
     margin-right: 0.5rem;
   }
 
-  .suffix {
+  .button__suffix {
     margin-left: 0.5rem;
   }
 
@@ -163,6 +163,24 @@ button.button {
       background-color: var(--clr-yellow-lighten-2);
       border-color: var(--clr-yellow-lighten-2);
       color: var(--clr-inverted-primary-text);
+    }
+  }
+
+  [aria-disabled='true'] &,
+  &[aria-disabled='true'] {
+    background-color: var(--clr-gray-darken-1);
+    border-color: var(--clr-gray-darken-1);
+    color: var(--clr-disabled-text);
+
+    &,
+    & > * {
+      cursor: not-allowed;
+    }
+
+    &:hover {
+      background-color: var(--clr-gray-darken-1);
+      border-color: var(--clr-gray-darken-1);
+      color: var(--clr-disabled-text);
     }
   }
 
