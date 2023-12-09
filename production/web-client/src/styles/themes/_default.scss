@@ -4,6 +4,7 @@ $colors-dark: (
   background-lighten-1: #293542,
   background-lighten-2: lighten(#293542, 10%),
   background-darken-1: #1b1c22,
+  background-darken-2: darken(#1b1c22, 3%),
   semi-transparent-background: rgba(#000, 0.3),
   // Text
   primary-text: #fff,
@@ -16,6 +17,7 @@ $colors-dark: (
   accent-lighten-1: #84c1ff,
   accent-lighten-2: #b3d8ff,
   accent-border: rgba(#007fff, 0.66),
+  accent-disabled: darken(#007fff, 20%),
   // Red
   red: #ff7777,
   red-lighten-1: lighten(#ff7777, 20%),
@@ -34,5 +36,6 @@ $colors-dark: (
   gray: #687c90,
   gray-lighten-1: lighten(#687c90, 20%),
   gray-darken-1: darken(#687c90, 25%),
+  gray-darken-2: darken(#687c90, 35%),
   gray-transparent: rgba(#687c90, 0.33)
 );
