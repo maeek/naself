@@ -1,0 +1,37 @@
+$spacer-small: 1rem;
+$spacer-medium: 2rem;
+$spacer-large: 3rem;
+
+@mixin spacer-sizing($type, $size: $spacer-small) {
+  @if $type == 'horizontal' {
+    width: $size;
+  } @else if $type == 'vertical' {
+    height: $size;
+  }
+}
+
+.spacer {
+  &--horizontal.spacer--small {
+    @include spacer-sizing('horizontal', $spacer-small);
+  }
+
+  &--horizontal.spacer--medium {
+    @include spacer-sizing('horizontal', $spacer-medium);
+  }
+
+  &--horizontal.spacer--large {
+    @include spacer-sizing('horizontal', $spacer-large);
+  }
+
+  &--vertical.spacer--small {
+    @include spacer-sizing('vertical', $spacer-small);
+  }
+
+  &--vertical.spacer--medium {
+    @include spacer-sizing('vertical', $spacer-medium);
+  }
+
+  &--vertical.spacer--large {
+    @include spacer-sizing('vertical', $spacer-large);
+  }
+}
