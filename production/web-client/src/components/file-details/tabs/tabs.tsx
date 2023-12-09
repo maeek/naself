@@ -12,6 +12,7 @@ export interface PropertiesTabsProps {
 export const PropertiesTabs = ({ options }: PropertiesTabsProps) => {
   const [activeTab, setActiveTab] = useState<string>();
   const rendererRef = useRef<HTMLDivElement>(null);
+  const optionsRefs = useRef<HTMLButtonElement[]>([]);
 
   useEffect(() => {
     if (!activeTab && options.length > 0) {
@@ -32,12 +33,26 @@ export const PropertiesTabs = ({ options }: PropertiesTabsProps) => {
   return (
     <div className='properties__tabs'>
       <div className='tabs__switcher'>
-        {options.map(option => (
+        {options.map((option, i) => (
           <button
+            ref={node => {
+              if (node) {
+                optionsRefs.current[i] = node;
+              }
+            }}
             className='tabs__tab'
             data-selected={option.name === activeTab}
             key={option.name}
             onClick={() => setActiveTab(option.name)}
+            onKeyUp={e => {
+              if (e.key === 'ArrowLeft') {
+                const index = i === 0 ? options.length - 1 : i - 1;
+                optionsRefs.current[index].focus();
+              } else if (e.key === 'ArrowRight') {
+                const index = i === options.length - 1 ? 0 : i + 1;
+                optionsRefs.current[index].focus();
+              }
+            }}
           >
             {option.name}
           </button>
