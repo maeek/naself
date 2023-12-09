@@ -1,0 +1,172 @@
+button.button {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: auto;
+  border-radius: 0.4rem;
+  outline-offset: 0.3rem;
+  outline-color: var(--clr-accent-border);
+  transition:
+    outline-offset 0.15s ease-in-out,
+    background-color 0.05s ease-out,
+    border-color 0.05s ease-out,
+    color 0.05s ease-out;
+  border: 0.1rem solid transparent;
+  padding: 0 0.8rem;
+  user-select: none;
+
+  .button__prefix {
+    margin-right: 0.5rem;
+  }
+
+  .suffix {
+    margin-left: 0.5rem;
+  }
+
+  .button__prefix,
+  .button__suffix {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  // Sizes
+  // -------------------------
+  &.button--small {
+    font-size: 0.75rem;
+    font-weight: 500;
+    gap: 0.2rem;
+
+    .button__content {
+      padding: 0.4rem 0;
+    }
+
+    .button__prefix {
+      > svg {
+        width: 0.9rem;
+        height: 0.9rem;
+      }
+    }
+  }
+
+  &.button--medium {
+    font-size: 0.9rem;
+    font-weight: 500;
+    gap: 0.2rem;
+
+    .button__content {
+      padding: 0.5rem 0;
+    }
+
+    .button__prefix {
+      > svg {
+        width: 1.1rem;
+        height: 1.1rem;
+      }
+    }
+  }
+
+  &.button--large {
+    font-size: 1rem;
+    font-weight: 600;
+    gap: 0.4rem;
+
+    .button__content {
+      padding: 0.6rem 0;
+    }
+
+    .button__prefix {
+      > svg {
+        width: 1.4rem;
+        height: 1.4rem;
+      }
+    }
+  }
+
+  // Variants
+  // -------------------------
+  &.button--primary {
+    background-color: var(--clr-accent);
+    border-color: var(--clr-accent);
+    color: var(--clr-primary-text);
+
+    &:hover {
+      background-color: var(--clr-accent-lighten-1);
+      border-color: var(--clr-accent-lighten-1);
+      color: var(--clr-inverted-primary-text);
+    }
+  }
+
+  &.button--secondary {
+    background-color: var(--clr-background-lighten-1);
+    border-color: var(--clr-background-lighten-1);
+    color: var(--clr-secondary-text);
+
+    &:hover {
+      background-color: var(--clr-background-lighten-2);
+      border-color: var(--clr-background-lighten-2);
+    }
+  }
+
+  &.button--outline {
+    background-color: transparent;
+    border-color: var(--clr-gray-darken-1);
+    color: var(--clr-secondary-text);
+
+    &:hover {
+      background-color: var(--clr-gray-darken-1);
+    }
+  }
+
+  &.button--success {
+    background-color: var(--clr-green-darken-1);
+    border-color: var(--clr-green-darken-1);
+    color: var(--clr-secondary-text);
+
+    &:hover {
+      background-color: var(--clr-green-lighten-1);
+      border-color: var(--clr-green-lighten-1);
+      color: var(--clr-inverted-primary-text);
+    }
+  }
+
+  &.button--info {
+    background-color: var(--clr-accent-lighten-1);
+    border-color: var(--clr-accent-lighten-1);
+    color: var(--clr-inverted-primary-text);
+
+    &:hover {
+      background-color: var(--clr-accent-lighten-2);
+      border-color: var(--clr-accent-lighten-2);
+      color: var(--clr-inverted-primary-text);
+    }
+  }
+
+  &.button--danger {
+    background-color: var(--clr-red-darken-1);
+    border-color: var(--clr-red-darken-1);
+    color: var(--clr-primary-text);
+
+    &:hover {
+      background-color: var(--clr-red);
+      border-color: var(--clr-red);
+      color: var(--clr-inverted-primary-text);
+    }
+  }
+
+  &.button--warning {
+    background-color: var(--clr-yellow-lighten-1);
+    border-color: var(--clr-yellow-lighten-1);
+    color: var(--clr-inverted-primary-text);
+
+    &:hover {
+      background-color: var(--clr-yellow-lighten-2);
+      border-color: var(--clr-yellow-lighten-2);
+      color: var(--clr-inverted-primary-text);
+    }
+  }
+
+  &:focus-within {
+    outline-offset: 0.1rem;
+  }
+}
