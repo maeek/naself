@@ -110,7 +110,7 @@ export const App = () => {
                     marginTop: '1rem'
                   }}
                 >
-                  <Checkbox />
+                  <Checkbox prefix='Select me' />
                   <Checkbox
                     checked
                     disabled
