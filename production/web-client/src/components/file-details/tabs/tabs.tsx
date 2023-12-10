@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { ReactNode, useEffect, useLayoutEffect, useRef, useState, useTransition } from 'react';
 import { Spacer } from '@/components/common/spacer/spacer';
 import './tabs.scss';
 
@@ -11,12 +11,15 @@ export interface PropertiesTabsProps {
 
 export const PropertiesTabs = ({ options }: PropertiesTabsProps) => {
   const [activeTab, setActiveTab] = useState<string>();
+  const [, startTransition] = useTransition();
   const rendererRef = useRef<HTMLDivElement>(null);
   const optionsRefs = useRef<HTMLButtonElement[]>([]);
 
   useEffect(() => {
     if (!activeTab && options.length > 0) {
-      setActiveTab(options[0].name);
+      startTransition(() => {
+        setActiveTab(options[0].name);
+      });
     }
   }, [activeTab, options]);
 
@@ -43,7 +46,11 @@ export const PropertiesTabs = ({ options }: PropertiesTabsProps) => {
             className='tabs__tab'
             data-selected={option.name === activeTab}
             key={option.name}
-            onClick={() => setActiveTab(option.name)}
+            onClick={() =>
+              startTransition(() => {
+                setActiveTab(option.name);
+              })
+            }
             onKeyUp={e => {
               if (e.key === 'ArrowLeft') {
                 const index = i === 0 ? options.length - 1 : i - 1;
