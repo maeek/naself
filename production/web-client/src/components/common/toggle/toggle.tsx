@@ -6,7 +6,6 @@ export interface ToggleProps extends Omit<InputHTMLAttributes<HTMLInputElement>,
   prefix?: ReactNode;
   suffix?: ReactNode;
   label?: ReactNode;
-  description?: ReactNode;
   checked?: boolean;
   disabled?: boolean;
   onChange?: ChangeEventHandler<HTMLInputElement>;
