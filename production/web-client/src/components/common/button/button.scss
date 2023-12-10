@@ -3,9 +3,9 @@ button.button {
   align-items: center;
   justify-content: flex-start;
   width: auto;
-  border-radius: 0.4rem;
+  border-radius: var(--th-border-radius);
   outline-offset: 0.3rem;
-  outline-color: var(--clr-accent-border);
+  outline-color: var(--th-clr-accent-border);
   transition:
     outline-offset 0.15s ease-in-out,
     background-color 0.05s ease-out,
@@ -86,91 +86,94 @@ button.button {
   // Variants
   // -------------------------
   &.button--primary {
-    background-color: var(--clr-accent);
-    border-color: var(--clr-accent);
-    color: var(--clr-primary-text);
+    background-color: var(--th-clr-button-primary-bg);
+    border-color: var(--th-clr-button-primary-border);
+    color: var(--th-clr-button-primary-text);
 
     &:hover {
-      background-color: var(--clr-accent-lighten-1);
-      border-color: var(--clr-accent-lighten-1);
-      color: var(--clr-inverted-primary-text);
+      background-color: var(--th-clr-button-primary-hover-bg);
+      border-color: var(--th-clr-button-primary-hover-border);
+      color: var(--th-clr-button-primary-hover-text);
     }
   }
 
   &.button--secondary {
-    background-color: var(--clr-bg-lighten-1);
-    border-color: var(--clr-bg-lighten-1);
-    color: var(--clr-secondary-text);
+    background-color: var(--th-clr-button-secondary-bg);
+    border-color: var(--th-clr-button-secondary-border);
+    color: var(--th-clr-button-secondary-text);
 
     &:hover {
-      background-color: var(--clr-bg-lighten-2);
-      border-color: var(--clr-bg-lighten-2);
+      background-color: var(--th-clr-button-secondary-hover-bg);
+      border-color: var(--th-clr-button-secondary-hover-border);
+      color: var(--th-clr-button-secondary-hover-text);
     }
   }
 
   &.button--outline {
-    background-color: transparent;
-    border-color: var(--clr-gray-darken-1);
-    color: var(--clr-secondary-text);
+    background-color: var(--th-clr-button-outline-bg);
+    border-color: var(--th-clr-button-outline-border);
+    color: var(--th-clr-button-outline-text);
 
     &:hover {
-      background-color: var(--clr-gray-darken-1);
+      background-color: var(--th-clr-button-outline-hover-bg);
+      border-color: var(--th-clr-button-outline-hover-border);
+      color: var(--th-clr-button-outline-hover-text);
     }
   }
 
   &.button--success {
-    background-color: var(--clr-green-darken-1);
-    border-color: var(--clr-green-darken-1);
-    color: var(--clr-secondary-text);
+    background-color: var(--th-clr-button-success-bg);
+    border-color: var(--th-clr-button-success-border);
+    color: var(--th-clr-button-success-text);
 
     &:hover {
-      background-color: var(--clr-green-lighten-1);
-      border-color: var(--clr-green-lighten-1);
-      color: var(--clr-inverted-primary-text);
+      background-color: var(--th-clr-button-success-hover-bg);
+      border-color: var(--th-clr-button-success-hover-border);
+      color: var(--th-clr-button-success-hover-text);
     }
   }
 
   &.button--info {
-    background-color: var(--clr-accent-lighten-1);
-    border-color: var(--clr-accent-lighten-1);
-    color: var(--clr-inverted-primary-text);
+    background-color: var(--th-clr-button-info-bg);
+    border-color: var(--th-clr-button-info-border);
+    color: var(--th-clr-button-info-text);
 
     &:hover {
-      background-color: var(--clr-accent-lighten-2);
-      border-color: var(--clr-accent-lighten-2);
-      color: var(--clr-inverted-primary-text);
+      background-color: var(--th-clr-button-info-hover-bg);
+      border-color: var(--th-clr-button-info-hover-border);
+      color: var(--th-clr-button-info-hover-text);
     }
   }
 
   &.button--danger {
-    background-color: var(--clr-red-darken-1);
-    border-color: var(--clr-red-darken-1);
-    color: var(--clr-primary-text);
+    background-color: var(--th-clr-button-danger-bg);
+    border-color: var(--th-clr-button-danger-border);
+    color: var(--th-clr-button-danger-text);
 
     &:hover {
-      background-color: var(--clr-red);
-      border-color: var(--clr-red);
-      color: var(--clr-inverted-primary-text);
+      background-color: var(--th-clr-button-danger-hover-bg);
+      border-color: var(--th-clr-button-danger-hover-border);
+      color: var(--th-clr-button-danger-hover-text);
     }
   }
 
   &.button--warning {
-    background-color: var(--clr-yellow-lighten-1);
-    border-color: var(--clr-yellow-lighten-1);
-    color: var(--clr-inverted-primary-text);
+    background-color: var(--th-clr-button-warning-bg);
+    border-color: var(--th-clr-button-warning-border);
+    color: var(--th-clr-button-warning-text);
 
     &:hover {
-      background-color: var(--clr-yellow-lighten-2);
-      border-color: var(--clr-yellow-lighten-2);
-      color: var(--clr-inverted-primary-text);
+      background-color: var(--th-clr-button-warning-hover-bg);
+      border-color: var(--th-clr-button-warning-hover-border);
+      color: var(--th-clr-button-warning-hover-text);
     }
   }
 
   [aria-disabled='true'] &,
   &[aria-disabled='true'] {
-    background-color: var(--clr-gray-darken-1);
-    border-color: var(--clr-gray-darken-1);
-    color: var(--clr-disabled-text);
+    background-color: var(--th-clr-gray-darken-1);
+    border-color: var(--th-clr-gray-darken-1);
+    color: var(--th-clr-disabled-text);
 
     &,
     & > * {
@@ -178,9 +181,9 @@ button.button {
     }
 
     &:hover {
-      background-color: var(--clr-gray-darken-1);
-      border-color: var(--clr-gray-darken-1);
-      color: var(--clr-disabled-text);
+      background-color: var(--th-clr-gray-darken-1);
+      border-color: var(--th-clr-gray-darken-1);
+      color: var(--th-clr-disabled-text);
     }
   }
 

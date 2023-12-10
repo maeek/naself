@@ -1,6 +1,6 @@
 @use './reset';
 @use './typography' as *;
-@use './colors';
+@use './theme';
 
 *,
 *::before,
@@ -10,8 +10,8 @@
 
 html,
 body {
-  background: var(--clr-bg-darken-1);
-  color: var(--clr-primary-text);
+  background: var(--th-clr-page-bg);
+  color: var(--th-clr-primary-text);
   margin: 0;
   height: 100%;
   transform: translate3d(0, 0, 0);

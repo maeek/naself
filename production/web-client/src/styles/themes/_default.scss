@@ -1,4 +1,4 @@
-$colors-dark: (
+$default-theme-dark: (
   // Background
   bg: #1e2129,
   bg-lighten-1: #293542,
@@ -6,18 +6,137 @@ $colors-dark: (
   bg-darken-1: #1b1c22,
   bg-darken-2: darken(#1b1c22, 3%),
   bg-semi-transparent: rgba(#000, 0.3),
+  // Views
+  // ==========================
+  page-bg: #1b1c22,
+
   // Text
+  // ==========================
   primary-text: #fff,
   secondary-text: #d9e0e8,
   placeholder-text: #a1a8b0,
   disabled-text: darken(#d9e0e8, 30%),
   inverted-primary-text: #000,
+
+  // Buttons
+  // ==========================
+  // Primary
+  button-primary-bg: #2387fa,
+  button-primary-border: #2387fa,
+  button-primary-text: #fff,
+  button-primary-hover-bg: #84c1ff,
+  button-primary-hover-border: #84c1ff,
+  button-primary-hover-text: #000,
+  // Secondary
+  button-secondary-bg: #293542,
+  button-secondary-border: #293542,
+  button-secondary-text: #d9e0e8,
+  button-secondary-hover-bg: lighten(#293542, 10%),
+  button-secondary-hover-border: lighten(#293542, 10%),
+  button-secondary-hover-text: #d9e0e8,
+  // Outline
+  button-outline-bg: transparent,
+  button-outline-border: darken(#687c90, 25%),
+  button-outline-text: #d9e0e8,
+  button-outline-hover-bg: darken(#687c90, 25%),
+  button-outline-hover-border: darken(#687c90, 25%),
+  button-outline-hover-text: #d9e0e8,
+  // Success
+  button-success-bg: darken(#00ffd1, 15%),
+  button-success-border: darken(#00ffd1, 15%),
+  button-success-text: #fff,
+  button-success-hover-bg: #00ffd1,
+  button-success-hover-border: #00ffd1,
+  button-success-hover-text: #000,
+  // Info
+  button-info-bg: #84c1ff,
+  button-info-border: #84c1ff,
+  button-info-text: #000,
+  button-info-hover-bg: #b3d8ff,
+  button-info-hover-border: #b3d8ff,
+  button-info-hover-text: #000,
+  // Danger
+  button-danger-bg: darken(#ff7777, 30%),
+  button-danger-border: darken(#ff7777, 30%),
+  button-danger-text: #fff,
+  button-danger-hover-bg: #ff7777,
+  button-danger-hover-border: #ff7777,
+  button-danger-hover-text: #000,
+  // Warning
+  button-warning-bg: lighten(#d28f0b, 20%),
+  button-warning-border: lighten(#d28f0b, 20%),
+  button-warning-text: #000,
+  button-warning-hover-bg: lighten(#d28f0b, 40%),
+  button-warning-hover-border: lighten(#d28f0b, 40%),
+  button-warning-hover-text: #000,
+
+  // Input
+  // ==========================
+  input-bg: #293542,
+  input-border: #293542,
+  input-text: #d9e0e8,
+  input-outline-color: #2387fa,
+  input-placeholder-text: #a1a8b0,
+  // disabled
+  input-disabled-bg: darken(#687c90, 25%),
+  input-disabled-border: darken(#687c90, 25%),
+  input-disabled-text: darken(#a1a8b0, 10%),
+  input-disabled-placeholder-text: darken(#a1a8b0, 20%),
+  // invalid
+  input-invalid-text: #ff7777,
+  input-invalid-bg: #1b1c22,
+  input-invalid-border: #ff7777,
+  input-invalid-placeholder-text: #ff7777,
+
+  // Toggle
+  // ==========================
+  toggle-switch-bg: #293542,
+  toggle-switch-border: #293542,
+  toggle-knob-bg: lighten(#687c90, 20%),
+  toggle-outline-color: #2387fa,
+  // checked
+  toggle-checked-knob-bg: #2387fa,
+  // disabled
+  toggle-switch-disabled-bg: darken(#1b1c22, 3%),
+  toggle-knob-disabled-bg: darken(#687c90, 35%),
+  toggle-checked-knob-disabled-bg: darken(#2387fa, 20%),
+  toggle-disabled-text: #a1a8b0,
+
+  // Radio
+  // ==========================
+  radio-switch-bg: transparent,
+  radio-switch-border: #293542,
+  radio-outline-color: #2387fa,
+  // checked
+  radio-checked-knob-bg: #2387fa,
+  radio-checked-knob-border: rgba(#2387fa, 0.66),
+  radio-checked-label-text: #84c1ff,
+  // disabled
+  radio-switch-disabled-bg: darken(#1b1c22, 3%),
+  radio-knob-disabled-bg: darken(#687c90, 35%),
+  radio-checked-knob-disabled-bg: darken(#2387fa, 20%),
+  radio-disabled-text: #a1a8b0,
+  radio-label-text: #fff,
+  radio-label-description-text: #a1a8b0,
+
+  // Fieldset
+  // ==========================
+  fieldset-box-bg: #1e2129,
+  fieldset-box-border: #293542,
+  fieldset-text: #a1a8b0,
+
+  // Spacer
+  // ==========================
+  spacer-bg: #293542,
+
+  // Colors
+  // ==========================
   // Accent
-  accent: #007fff,
+  accent: #2387fa,
   accent-lighten-1: #84c1ff,
   accent-lighten-2: #b3d8ff,
-  accent-border: rgba(#007fff, 0.66),
-  accent-disabled: darken(#007fff, 20%),
+  accent-border: rgba(#2387fa, 0.66),
+  accent-disabled: darken(#2387fa, 20%),
   // Red
   red: #ff7777,
   red-lighten-1: lighten(#ff7777, 20%),
@@ -37,5 +156,15 @@ $colors-dark: (
   gray-lighten-1: lighten(#687c90, 20%),
   gray-darken-1: darken(#687c90, 25%),
   gray-darken-2: darken(#687c90, 35%),
-  gray-transparent: rgba(#687c90, 0.33)
+  gray-transparent: rgba(#687c90, 0.33),
+  // Other
+  border-radius: 0.5rem,
+
+  // File Details / Tabs
+  // ==========================
+  tabs-divider-bg: #293542,
+  tabs-switcher-text: #d9e0e8,
+  tabs-switcher-active-text: #84c1ff,
+  tabs-outline-color: #2387fa,
+  tabs-switcher-active-underline-bg: #2387fa
 );

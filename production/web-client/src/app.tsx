@@ -2,6 +2,7 @@ import { IconLinkPlus, IconPlus, IconSearch, IconUserFilled } from '@tabler/icon
 import { useGetStatusQuery } from '@/services/api/system.api';
 import { Button } from './components/common/button';
 import { Fieldset } from './components/common/fieldset';
+import { Radio } from './components/common/radio';
 import { Spacer } from './components/common/spacer';
 import { Input } from './components/common/text-input/text-input';
 import { Toggle } from './components/common/toggle/toggle';
@@ -111,7 +112,18 @@ export const App = () => {
                     marginTop: '1rem'
                   }}
                 >
-                  <Toggle prefix='Select me' />
+                  <Toggle
+                    prefix='Select me'
+                    onChange={e => {
+                      if (e.target.checked) {
+                        document.querySelector('html')!.classList.remove('dark');
+                        document.querySelector('html')!.classList.add('light');
+                      } else {
+                        document.querySelector('html')!.classList.remove('light');
+                        document.querySelector('html')!.classList.add('dark');
+                      }
+                    }}
+                  />
                   <Toggle
                     checked
                     disabled
@@ -124,8 +136,14 @@ export const App = () => {
                   prefix={<IconUserFilled />}
                   type='password'
                   validate={value => value.length < 1 && 'Too short'}
-                  value='hasłoo'
-                  suffix={<div style={{ padding: '0 0.5rem', color: 'var(--clr-secondary-text)' }}>Clear</div>}
+                  value=''
+                  suffix={<div style={{ padding: '0 0.5rem', color: 'var(--th-clr-secondary-text)' }}>Clear</div>}
+                />
+                <Input
+                  placeholder='Type something...'
+                  type='text'
+                  value=''
+                  disabled
                 />
                 <Spacer size='large' />
               </>
@@ -146,10 +164,79 @@ export const App = () => {
                 <Fieldset
                   title='Sharing'
                   description='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, diam ac tincidunt ultricies, nisl nunc aliquam nunc, vitae ultrices nisl nunc quis nunc.'
+                  onChange={e => console.log(e.target.name, e.target.value, e.target.checked)}
                   layout='horizontal'
-                  htmlFor='sharing-toggle'
+                  name='custom'
                 >
-                  <Toggle id='sharing-toggle' />
+                  <Toggle value='aa' />
+                  <Spacer size='extra-small' />
+                  <Toggle value='bb' />
+                </Fieldset>
+                <Fieldset
+                  title='Sharing'
+                  description='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, diam ac tincidunt ultricies, nisl nunc aliquam nunc, vitae ultrices nisl nunc quis nunc.'
+                  onChange={e => console.log(e.target.name, e.target.value, e.target.checked)}
+                  layout='horizontal'
+                  name='custom'
+                  box
+                >
+                  <Toggle value='aa' />
+                </Fieldset>
+                <Fieldset
+                  onChange={e => console.log(e.target.value)}
+                  name='sharing'
+                  box
+                >
+                  <Radio
+                    value='public'
+                    label='Public'
+                    description='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, diam ac tincidunt ultricies, nisl nunc aliquam nunc, vitae ultrices nisl nunc quis nunc.'
+                  />
+                  <Spacer size='medium' />
+                  <Radio
+                    value='internal'
+                    label='Internal'
+                  />
+                  <Spacer size='medium' />
+                  <Radio
+                    value='public'
+                    label='Private'
+                  />
+                  <Spacer size='medium' />
+                  <Radio
+                    value='custom'
+                    label='Custom'
+                    disabled
+                  />
+                </Fieldset>
+                <Fieldset
+                  onChange={e => console.log(e.target.value)}
+                  name='sharing2'
+                  title='Sharing'
+                  description='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, diam ac tincidunt ultricies, nisl nunc aliquam nunc, vitae ultrices nisl nunc quis nunc.'
+                  box
+                >
+                  <Radio
+                    value='public'
+                    label='Public'
+                    description='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, diam ac tincidunt ultricies, nisl nunc aliquam nunc, vitae ultrices nisl nunc quis nunc.'
+                  />
+                  <Spacer size='medium' />
+                  <Radio
+                    value='internal'
+                    label='Internal'
+                  />
+                  <Spacer size='medium' />
+                  <Radio
+                    value='public'
+                    label='Private'
+                  />
+                  <Spacer size='medium' />
+                  <Radio
+                    value='custom'
+                    label='Custom'
+                    disabled
+                  />
                 </Fieldset>
               </PropertyList>
             )
