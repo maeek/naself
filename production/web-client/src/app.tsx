@@ -1,6 +1,7 @@
 import { IconLinkPlus, IconPlus, IconSearch, IconUserFilled } from '@tabler/icons-react';
 import { useGetStatusQuery } from '@/services/api/system.api';
 import { Button } from './components/common/button';
+import { Fieldset } from './components/common/fieldset';
 import { Spacer } from './components/common/spacer';
 import { Input } from './components/common/text-input/text-input';
 import { Toggle } from './components/common/toggle/toggle';
@@ -136,6 +137,20 @@ export const App = () => {
               <PropertyList title='Sharing'>
                 <Property name='Shared with'>3 people</Property>
                 <Property name='Shared by'>You</Property>
+                <Fieldset
+                  title='Share with'
+                  description='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, diam ac tincidunt ultricies, nisl nunc aliquam nunc, vitae ultrices nisl nunc quis nunc.'
+                >
+                  <Input placeholder='Type something...' />
+                </Fieldset>
+                <Fieldset
+                  title='Sharing'
+                  description='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, diam ac tincidunt ultricies, nisl nunc aliquam nunc, vitae ultrices nisl nunc quis nunc.'
+                  layout='horizontal'
+                  htmlFor='sharing-toggle'
+                >
+                  <Toggle id='sharing-toggle' />
+                </Fieldset>
               </PropertyList>
             )
           }
