@@ -144,6 +144,7 @@ module.exports = {
         css: true
       })
     ],
+    runtimeChunk: isDevelopment ? 'single' : undefined,
     splitChunks: {
       chunks: 'all',
       cacheGroups: {
