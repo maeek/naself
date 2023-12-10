@@ -42,6 +42,10 @@
     flex: 1 1 auto;
   }
 
+  input::placeholder {
+    color: var(--clr-placeholder-text);
+  }
+
   &--invalid {
     border-color: var(--clr-red);
   }
