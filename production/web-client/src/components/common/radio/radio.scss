@@ -1,0 +1,100 @@
+.radio {
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.8rem;
+  border-radius: var(--th-border-radius);
+  width: 100%;
+
+  &__switch {
+    width: 1.8rem;
+    height: 1.8rem;
+    border-radius: 5rem;
+    background-color: var(--th-clr-radio-switch-bg);
+    border: 0.1rem solid var(--th-clr-radio-switch-border);
+    outline: none;
+    box-shadow: inset 0 0 0.2rem var(--th-clr-bg-semi-transparent);
+    position: relative;
+    flex: 0 0 auto;
+
+    &__knob {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 1rem;
+      height: 1rem;
+      border-radius: 50%;
+      background-color: transparent;
+      transition:
+        outline-offset 0.15s ease-in-out,
+        transform 0.1s ease-out,
+        opacity 0.2s ease-out;
+      outline-offset: 0.3rem;
+      outline-color: var(--th-clr-radio-outline-color);
+      transform: translate(-50%, -50%) scale(0);
+      opacity: 0;
+    }
+  }
+
+  &__rich-label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    margin-left: 0.6rem;
+
+    &__label {
+      font-weight: 500;
+      color: var(--th-clr-radio-label-text);
+    }
+
+    &__description {
+      font-size: 0.8rem;
+      color: var(--th-clr-radio-label-description-text);
+    }
+  }
+
+  input:checked ~ &__switch ~ &__rich-label &__rich-label__label {
+    color: var(--th-clr-radio-checked-label-text);
+  }
+
+  input:checked ~ &__switch {
+    border-color: var(--th-clr-radio-checked-knob-border);
+  }
+
+  input:checked ~ &__switch &__switch__knob {
+    opacity: 1;
+    background-color: var(--th-clr-radio-checked-knob-bg);
+    transform: translate(-50%, -50%) scale(1);
+    box-shadow: 0 0 0.2rem var(--th-clr-bg-semi-transparent);
+  }
+
+  input {
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    z-index: -1;
+  }
+
+  &[aria-disabled='true'] {
+    .radio__switch {
+      background-color: var(--th-clr-radio-switch-disabled-bg);
+    }
+
+    input:checked ~ .radio__switch .radio__switch__knob {
+      background-color: var(--th-clr-radio-checked-knob-disabled-bg);
+    }
+
+    &,
+    & > * {
+      cursor: not-allowed;
+      color: var(--th-clr-radio-disabled-text);
+    }
+  }
+
+  &:focus-within .radio__switch {
+    outline: auto;
+    outline-offset: 0.2rem;
+    outline-color: var(--th-clr-radio-outline-color);
+  }
+}

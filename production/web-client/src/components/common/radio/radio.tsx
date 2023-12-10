@@ -1,52 +1,60 @@
 import { ChangeEventHandler, InputHTMLAttributes, ReactNode, forwardRef } from 'react';
 import classNames from 'classnames';
 import { useFieldSetContext } from '../fieldset/fieldset-context';
-import './toggle.scss';
+import './radio.scss';
 
-export interface ToggleProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'prefix' | 'type'> {
+export interface RadioProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'prefix' | 'type'> {
   prefix?: ReactNode;
-  suffix?: ReactNode;
   label?: ReactNode;
+  /**
+   * Only visible when label is provided
+   */
+  description?: ReactNode;
   checked?: boolean;
   disabled?: boolean;
   onChange?: ChangeEventHandler<HTMLInputElement>;
 }
 
-export const Toggle = forwardRef<HTMLInputElement, ToggleProps>(
-  ({ prefix, suffix, className, checked, onChange, disabled, name, ...props }, ref) => {
+export const Radio = forwardRef<HTMLInputElement, RadioProps>(
+  ({ prefix, label, className, checked, onChange, disabled, name, description, ...props }, ref) => {
     const { disabled: disabledByContext, onChange: onChangeByContext, name: nameByContext } = useFieldSetContext();
     const isDisabled = disabled ?? disabledByContext ?? false;
 
     return (
-      <div className='toggle__container'>
+      <div className='radio__container'>
         <label
           aria-disabled={isDisabled}
           className={classNames(
-            'toggle',
+            'radio',
             {
-              'toggle--disabled': isDisabled
+              'radio--disabled': disabled
             },
             className
           )}
         >
-          {prefix ? <div className='toggle__prefix'>{prefix}</div> : null}
+          {prefix ? <div className='radio__prefix'>{prefix}</div> : null}
           <input
             {...props}
             name={name ?? nameByContext}
+            type='radio'
+            ref={ref}
+            checked={checked}
             onChange={e => {
               onChange?.(e);
               onChangeByContext?.(e);
             }}
-            type='checkbox'
-            ref={ref}
-            checked={checked}
             disabled={isDisabled}
             aria-disabled={isDisabled}
           />
-          <div className='toggle__switch'>
-            <div className='toggle__switch__knob' />
+          <div className='radio__switch'>
+            <div className='radio__switch__knob' />
           </div>
-          {suffix ? <div className='toggle__suffix'>{suffix}</div> : null}
+          {label ? (
+            <div className='radio__rich-label'>
+              <div className='radio__rich-label__label'>{label}</div>
+              <p className='radio__rich-label__description'>{description}</p>
+            </div>
+          ) : null}
         </label>
       </div>
     );
