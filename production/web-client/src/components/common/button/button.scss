@@ -98,13 +98,13 @@ button.button {
   }
 
   &.button--secondary {
-    background-color: var(--clr-background-lighten-1);
-    border-color: var(--clr-background-lighten-1);
+    background-color: var(--clr-bg-lighten-1);
+    border-color: var(--clr-bg-lighten-1);
     color: var(--clr-secondary-text);
 
     &:hover {
-      background-color: var(--clr-background-lighten-2);
-      border-color: var(--clr-background-lighten-2);
+      background-color: var(--clr-bg-lighten-2);
+      border-color: var(--clr-bg-lighten-2);
     }
   }
 

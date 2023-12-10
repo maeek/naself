@@ -1,11 +1,11 @@
 $colors-dark: (
   // Background
-  background: #1e2129,
-  background-lighten-1: #293542,
-  background-lighten-2: lighten(#293542, 10%),
-  background-darken-1: #1b1c22,
-  background-darken-2: darken(#1b1c22, 3%),
-  semi-transparent-background: rgba(#000, 0.3),
+  bg: #1e2129,
+  bg-lighten-1: #293542,
+  bg-lighten-2: lighten(#293542, 10%),
+  bg-darken-1: #1b1c22,
+  bg-darken-2: darken(#1b1c22, 3%),
+  bg-semi-transparent: rgba(#000, 0.3),
   // Text
   primary-text: #fff,
   secondary-text: #d9e0e8,
