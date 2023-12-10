@@ -1,4 +1,4 @@
-.checkbox {
+.toggle {
   font-size: 0.9rem;
   display: flex;
   align-items: center;
@@ -45,15 +45,15 @@
   }
 
   &[aria-disabled='true'] {
-    .checkbox__switch {
+    .toggle__switch {
       background-color: var(--clr-background-darken-2);
 
-      .checkbox__switch__knob {
+      .toggle__switch__knob {
         background-color: var(--clr-gray-darken-2);
       }
     }
 
-    input:checked ~ .checkbox__switch .checkbox__switch__knob {
+    input:checked ~ .toggle__switch .toggle__switch__knob {
       background-color: var(--clr-accent-disabled);
     }
 
@@ -64,7 +64,7 @@
     }
   }
 
-  &:focus-within .checkbox__switch__knob {
+  &:focus-within .toggle__switch__knob {
     outline: auto;
     outline-offset: 0.1rem;
     outline-color: var(--clr-accent-border);

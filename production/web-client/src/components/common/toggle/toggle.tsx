@@ -1,8 +1,8 @@
 import { ChangeEventHandler, InputHTMLAttributes, ReactNode, forwardRef } from 'react';
 import classNames from 'classnames';
-import './checkbox.scss';
+import './toggle.scss';
 
-export interface CheckboxProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'prefix' | 'type'> {
+export interface ToggleProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'prefix' | 'type'> {
   prefix?: ReactNode;
   suffix?: ReactNode;
   label?: ReactNode;
@@ -12,21 +12,21 @@ export interface CheckboxProps extends Omit<InputHTMLAttributes<HTMLInputElement
   onChange?: ChangeEventHandler<HTMLInputElement>;
 }
 
-export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
+export const Toggle = forwardRef<HTMLInputElement, ToggleProps>(
   ({ prefix, suffix, className, checked, onChange, disabled, ...props }, ref) => {
     return (
-      <div className='checkbox__container'>
+      <div className='toggle__container'>
         <label
           aria-disabled={disabled}
           className={classNames(
-            'checkbox',
+            'toggle',
             {
-              'checkbox--disabled': disabled
+              'toggle--disabled': disabled
             },
             className
           )}
         >
-          {prefix ? <div className='checkbox__prefix'>{prefix}</div> : null}
+          {prefix ? <div className='toggle__prefix'>{prefix}</div> : null}
           <input
             {...props}
             type='checkbox'
@@ -36,10 +36,10 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
             disabled={disabled}
             aria-disabled={disabled}
           />
-          <div className='checkbox__switch'>
-            <div className='checkbox__switch__knob' />
+          <div className='toggle__switch'>
+            <div className='toggle__switch__knob' />
           </div>
-          {suffix ? <div className='checkbox__suffix'>{suffix}</div> : null}
+          {suffix ? <div className='toggle__suffix'>{suffix}</div> : null}
         </label>
       </div>
     );

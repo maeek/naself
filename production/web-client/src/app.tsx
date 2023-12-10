@@ -1,9 +1,9 @@
 import { IconLinkPlus, IconPlus, IconSearch, IconUserFilled } from '@tabler/icons-react';
 import { useGetStatusQuery } from '@/services/api/system.api';
 import { Button } from './components/common/button';
-import { Checkbox } from './components/common/checkbox/checkbox';
 import { Spacer } from './components/common/spacer';
 import { Input } from './components/common/text-input/text-input';
+import { Toggle } from './components/common/toggle/toggle';
 import { PropertyList } from './components/file-details/list/properties-list';
 import { Property } from './components/file-details/list/property';
 import { PropertiesTabs } from './components/file-details/tabs/tabs';
@@ -110,12 +110,12 @@ export const App = () => {
                     marginTop: '1rem'
                   }}
                 >
-                  <Checkbox prefix='Select me' />
-                  <Checkbox
+                  <Toggle prefix='Select me' />
+                  <Toggle
                     checked
                     disabled
                   />
-                  <Checkbox disabled />
+                  <Toggle disabled />
                 </div>
                 <Spacer size='large' />
                 <Input
