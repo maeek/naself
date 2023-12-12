@@ -20,13 +20,27 @@ $default-theme-dark: (
 
   // Buttons
   // ==========================
+  split-button-bg: #293542,
+  split-button-border: #293542,
+  split-button-text: #d9e0e8,
+  split-button-hover-bg: lighten(#293542, 10%),
+  split-button-hover-border: lighten(#293542, 10%),
+  split-button-hover-text: #d9e0e8,
+
   // Primary
   button-primary-bg: #2387fa,
   button-primary-border: #2387fa,
   button-primary-text: #fff,
-  button-primary-hover-bg: #84c1ff,
-  button-primary-hover-border: #84c1ff,
-  button-primary-hover-text: #000,
+  button-primary-hover-bg: darken(#2387fa, 10%),
+  button-primary-hover-border: darken(#2387fa, 10%),
+  button-primary-hover-text: #fff,
+
+  split-button-primary-bg: lighten(#2387fa, 10%),
+  split-button-primary-text: #fff,
+  split-button-primary-border: lighten(#2387fa, 10%),
+  split-button-primary-hover-bg: darken(#2387fa, 10%),
+  split-button-primary-hover-border: darken(#2387fa, 10%),
+  split-button-primary-hover-text: #fff,
   // Secondary
   button-secondary-bg: #293542,
   button-secondary-border: #293542,
@@ -34,6 +48,13 @@ $default-theme-dark: (
   button-secondary-hover-bg: lighten(#293542, 10%),
   button-secondary-hover-border: lighten(#293542, 10%),
   button-secondary-hover-text: #d9e0e8,
+
+  split-button-secondary-bg: lighten(#293542, 5%),
+  split-button-secondary-text: #d9e0e8,
+  split-button-secondary-border: lighten(#293542, 5%),
+  split-button-secondary-hover-bg: lighten(#293542, 10%),
+  split-button-secondary-hover-border: lighten(#293542, 10%),
+  split-button-secondary-hover-text: #d9e0e8,
   // Outline
   button-outline-bg: transparent,
   button-outline-border: darken(#687c90, 25%),
@@ -45,9 +66,16 @@ $default-theme-dark: (
   button-success-bg: darken(#00ffd1, 15%),
   button-success-border: darken(#00ffd1, 15%),
   button-success-text: #fff,
-  button-success-hover-bg: #00ffd1,
-  button-success-hover-border: #00ffd1,
-  button-success-hover-text: #000,
+  button-success-hover-bg: darken(#00ffd1, 25%),
+  button-success-hover-border: darken(#00ffd1, 25%),
+  button-success-hover-text: #fff,
+
+  split-button-success-bg: darken(#00ffd1, 20%),
+  split-button-success-text: #fff,
+  split-button-success-border: darken(#00ffd1, 20%),
+  split-button-success-hover-bg: darken(#00ffd1, 25%),
+  split-button-success-hover-border: darken(#00ffd1, 25%),
+  split-button-success-hover-text: #fff,
   // Info
   button-info-bg: #84c1ff,
   button-info-border: #84c1ff,
@@ -55,20 +83,41 @@ $default-theme-dark: (
   button-info-hover-bg: #b3d8ff,
   button-info-hover-border: #b3d8ff,
   button-info-hover-text: #000,
+
+  split-button-info-bg: lighten(#84c1ff, 5%),
+  split-button-info-text: #000,
+  split-button-info-border: lighten(#84c1ff, 5%),
+  split-button-info-hover-bg: lighten(#84c1ff, 10%),
+  split-button-info-hover-border: lighten(#84c1ff, 10%),
+  split-button-info-hover-text: #000,
   // Danger
-  button-danger-bg: darken(#ff7777, 30%),
-  button-danger-border: darken(#ff7777, 30%),
+  button-danger-bg: #df2c2c,
+  button-danger-border: #df2c2c,
   button-danger-text: #fff,
-  button-danger-hover-bg: #ff7777,
-  button-danger-hover-border: #ff7777,
-  button-danger-hover-text: #000,
+  button-danger-hover-bg: lighten(#df2c2c, 5%),
+  button-danger-hover-border: lighten(#df2c2c, 5%),
+  button-danger-hover-text: #fff,
+
+  split-button-danger-bg: lighten(#df2c2c, 5%),
+  split-button-danger-text: #fff,
+  split-button-danger-border: lighten(#df2c2c, 5%),
+  split-button-danger-hover-bg: lighten(#df2c2c, 10%),
+  split-button-danger-hover-border: lighten(#df2c2c, 10%),
+  split-button-danger-hover-text: #fff,
   // Warning
-  button-warning-bg: lighten(#d28f0b, 20%),
-  button-warning-border: lighten(#d28f0b, 20%),
-  button-warning-text: #000,
-  button-warning-hover-bg: lighten(#d28f0b, 40%),
-  button-warning-hover-border: lighten(#d28f0b, 40%),
-  button-warning-hover-text: #000,
+  button-warning-bg: lighten(#d28f0b, 5%),
+  button-warning-border: lighten(#d28f0b, 5%),
+  button-warning-text: #fff,
+  button-warning-hover-bg: lighten(#d28f0b, 10%),
+  button-warning-hover-border: lighten(#d28f0b, 10%),
+  button-warning-hover-text: #fff,
+
+  split-button-warning-bg: lighten(#d28f0b, 10%),
+  split-button-warning-text: #fff,
+  split-button-warning-border: lighten(#d28f0b, 10%),
+  split-button-warning-hover-bg: lighten(#d28f0b, 15%),
+  split-button-warning-hover-border: lighten(#d28f0b, 15%),
+  split-button-warning-hover-text: #fff,
 
   // Input
   // ==========================
@@ -83,10 +132,10 @@ $default-theme-dark: (
   input-disabled-text: darken(#a1a8b0, 10%),
   input-disabled-placeholder-text: darken(#a1a8b0, 20%),
   // invalid
-  input-invalid-text: #ff7777,
+  input-invalid-text: lighten(#df2c2c, 5%),
   input-invalid-bg: #1b1c22,
-  input-invalid-border: #ff7777,
-  input-invalid-placeholder-text: #ff7777,
+  input-invalid-border: lighten(#df2c2c, 5%),
+  input-invalid-placeholder-text: #df2c2c,
 
   // Toggle
   // ==========================
@@ -138,10 +187,10 @@ $default-theme-dark: (
   accent-border: rgba(#2387fa, 0.66),
   accent-disabled: darken(#2387fa, 20%),
   // Red
-  red: #ff7777,
-  red-lighten-1: lighten(#ff7777, 20%),
-  red-darken-1: darken(#ff7777, 30%),
-  red-transparent: rgba(#ff7777, 0.33),
+  red: #df2c2c,
+  red-lighten-1: lighten(#df2c2c, 20%),
+  red-darken-1: darken(#df2c2c, 30%),
+  red-transparent: rgba(#df2c2c, 0.33),
   // Yellow
   yellow: #d28f0b,
   yellow-lighten-1: lighten(#d28f0b, 20%),

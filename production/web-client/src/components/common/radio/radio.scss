@@ -28,8 +28,8 @@
       background-color: transparent;
       transition:
         outline-offset 0.15s ease-in-out,
-        transform 0.1s ease-out,
-        opacity 0.2s ease-out;
+        transform 0.15s ease-in-out,
+        opacity 0.15s ease-in-out;
       outline-offset: 0.3rem;
       outline-color: var(--th-clr-radio-outline-color);
       transform: translate(-50%, -50%) scale(0);

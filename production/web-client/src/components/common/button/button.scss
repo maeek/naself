@@ -85,87 +85,18 @@ button.button {
 
   // Variants
   // -------------------------
-  &.button--primary {
-    background-color: var(--th-clr-button-primary-bg);
-    border-color: var(--th-clr-button-primary-border);
-    color: var(--th-clr-button-primary-text);
+  $variants: 'primary', 'secondary', 'success', 'info', 'danger', 'warning', 'outline';
+  @each $variant in $variants {
+    &.button--#{$variant} {
+      background-color: var(--th-clr-button-#{$variant}-bg);
+      border-color: var(--th-clr-button-#{$variant}-border);
+      color: var(--th-clr-button-#{$variant}-text);
 
-    &:hover {
-      background-color: var(--th-clr-button-primary-hover-bg);
-      border-color: var(--th-clr-button-primary-hover-border);
-      color: var(--th-clr-button-primary-hover-text);
-    }
-  }
-
-  &.button--secondary {
-    background-color: var(--th-clr-button-secondary-bg);
-    border-color: var(--th-clr-button-secondary-border);
-    color: var(--th-clr-button-secondary-text);
-
-    &:hover {
-      background-color: var(--th-clr-button-secondary-hover-bg);
-      border-color: var(--th-clr-button-secondary-hover-border);
-      color: var(--th-clr-button-secondary-hover-text);
-    }
-  }
-
-  &.button--outline {
-    background-color: var(--th-clr-button-outline-bg);
-    border-color: var(--th-clr-button-outline-border);
-    color: var(--th-clr-button-outline-text);
-
-    &:hover {
-      background-color: var(--th-clr-button-outline-hover-bg);
-      border-color: var(--th-clr-button-outline-hover-border);
-      color: var(--th-clr-button-outline-hover-text);
-    }
-  }
-
-  &.button--success {
-    background-color: var(--th-clr-button-success-bg);
-    border-color: var(--th-clr-button-success-border);
-    color: var(--th-clr-button-success-text);
-
-    &:hover {
-      background-color: var(--th-clr-button-success-hover-bg);
-      border-color: var(--th-clr-button-success-hover-border);
-      color: var(--th-clr-button-success-hover-text);
-    }
-  }
-
-  &.button--info {
-    background-color: var(--th-clr-button-info-bg);
-    border-color: var(--th-clr-button-info-border);
-    color: var(--th-clr-button-info-text);
-
-    &:hover {
-      background-color: var(--th-clr-button-info-hover-bg);
-      border-color: var(--th-clr-button-info-hover-border);
-      color: var(--th-clr-button-info-hover-text);
-    }
-  }
-
-  &.button--danger {
-    background-color: var(--th-clr-button-danger-bg);
-    border-color: var(--th-clr-button-danger-border);
-    color: var(--th-clr-button-danger-text);
-
-    &:hover {
-      background-color: var(--th-clr-button-danger-hover-bg);
-      border-color: var(--th-clr-button-danger-hover-border);
-      color: var(--th-clr-button-danger-hover-text);
-    }
-  }
-
-  &.button--warning {
-    background-color: var(--th-clr-button-warning-bg);
-    border-color: var(--th-clr-button-warning-border);
-    color: var(--th-clr-button-warning-text);
-
-    &:hover {
-      background-color: var(--th-clr-button-warning-hover-bg);
-      border-color: var(--th-clr-button-warning-hover-border);
-      color: var(--th-clr-button-warning-hover-text);
+      &:hover {
+        background-color: var(--th-clr-button-#{$variant}-hover-bg);
+        border-color: var(--th-clr-button-#{$variant}-hover-border);
+        color: var(--th-clr-button-#{$variant}-hover-text);
+      }
     }
   }
 
