@@ -16,6 +16,24 @@ button.split-button {
   user-select: none;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
+
+  [aria-disabled='true'] &,
+  &[aria-disabled='true'] {
+    background-color: var(--th-clr-gray-darken-1);
+    border-color: var(--th-clr-gray-darken-1);
+    color: var(--th-clr-disabled-text);
+
+    &,
+    & > * {
+      cursor: not-allowed;
+    }
+
+    &:hover {
+      background-color: var(--th-clr-gray-darken-1);
+      border-color: var(--th-clr-gray-darken-1);
+      color: var(--th-clr-disabled-text);
+    }
+  }
 }
 
 .split-button {
@@ -273,24 +291,6 @@ button.split-button {
         border-color: var(--th-clr-button-#{$variant}-hover-border);
         color: var(--th-clr-button-#{$variant}-hover-text);
       }
-    }
-  }
-
-  [aria-disabled='true'] &,
-  &[aria-disabled='true'] {
-    background-color: var(--th-clr-gray-darken-1);
-    border-color: var(--th-clr-gray-darken-1);
-    color: var(--th-clr-disabled-text);
-
-    &,
-    & > * {
-      cursor: not-allowed;
-    }
-
-    &:hover {
-      background-color: var(--th-clr-gray-darken-1);
-      border-color: var(--th-clr-gray-darken-1);
-      color: var(--th-clr-disabled-text);
     }
   }
 

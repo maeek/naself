@@ -40,14 +40,14 @@ export const SplitButton = ({
     <div className='split-button__container'>
       <button
         {...props}
-        disabled={disabled}
-        aria-disabled={disabled}
-        onClick={!disabled ? onClick : undefined}
+        disabled={disabled || options[0]?.disabled}
+        aria-disabled={disabled || options[0]?.disabled}
+        onClick={!disabled && !options[0]?.disabled ? onClick : undefined}
         className={classNames(
           'split-button',
           `split-button--${variant}`,
           `split-button--${size}`,
-          { 'split-button--disabled': disabled },
+          { 'split-button--disabled': disabled || options[0]?.disabled },
           className
         )}
         type='button'
@@ -70,7 +70,9 @@ export const SplitButton = ({
                 ) : (
                   <>
                     <span>{opt.name}</span>
-                    <p className='split-button__options__item__description'>{opt.description}</p>
+                    {opt.description ? (
+                      <p className='split-button__options__item__description'>{opt.description}</p>
+                    ) : null}
                   </>
                 )}
               </button>

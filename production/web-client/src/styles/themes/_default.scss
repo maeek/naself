@@ -8,8 +8,7 @@ $default-theme-dark: (
   bg-semi-transparent: rgba(#000, 0.3),
   // Views
   // ==========================
-  page-bg: #1b1c22,
-
+  page-bg: darken(#1e2129, 2%),
   // Text
   // ==========================
   primary-text: #fff,
@@ -20,11 +19,11 @@ $default-theme-dark: (
 
   // Buttons
   // ==========================
-  split-button-bg: #293542,
-  split-button-border: #293542,
+  split-button-bg: darken(#293542, 2%),
+  split-button-border: darken(#293542, 2%),
   split-button-text: #d9e0e8,
-  split-button-hover-bg: lighten(#293542, 10%),
-  split-button-hover-border: lighten(#293542, 10%),
+  split-button-hover-bg: lighten(#293542, 5%),
+  split-button-hover-border: lighten(#293542, 5%),
   split-button-hover-text: #d9e0e8,
 
   // Primary
@@ -154,7 +153,7 @@ $default-theme-dark: (
   // Radio
   // ==========================
   radio-switch-bg: transparent,
-  radio-switch-border: #293542,
+  radio-switch-border: lighten(#1e2129, 15%),
   radio-outline-color: #2387fa,
   // checked
   radio-checked-knob-bg: #2387fa,
@@ -171,13 +170,12 @@ $default-theme-dark: (
   // Fieldset
   // ==========================
   fieldset-box-bg: #1e2129,
-  fieldset-box-border: #293542,
+  fieldset-box-border: lighten(#1e2129, 10%),
   fieldset-text: #a1a8b0,
 
   // Spacer
   // ==========================
-  spacer-bg: #293542,
-
+  spacer-bg: lighten(#1e2129, 10%),
   // Colors
   // ==========================
   // Accent
@@ -211,7 +209,7 @@ $default-theme-dark: (
 
   // File Details / Tabs
   // ==========================
-  tabs-divider-bg: #293542,
+  tabs-divider-bg: lighten(#1e2129, 5%),
   tabs-switcher-text: #d9e0e8,
   tabs-switcher-active-text: #84c1ff,
   tabs-outline-color: #2387fa,

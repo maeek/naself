@@ -52,7 +52,7 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(
           {label ? (
             <div className='radio__rich-label'>
               <div className='radio__rich-label__label'>{label}</div>
-              <p className='radio__rich-label__description'>{description}</p>
+              {description ? <p className='radio__rich-label__description'>{description}</p> : null}
             </div>
           ) : null}
         </label>
