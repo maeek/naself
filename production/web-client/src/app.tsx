@@ -1,14 +1,16 @@
 import { IconLinkPlus, IconPlus, IconSearch, IconUserFilled } from '@tabler/icons-react';
+import 'focus-visible';
 import { useGetStatusQuery } from '@/services/api/system.api';
-import { Button } from './components/common/button';
+import { Button, SplitButton } from './components/common/button';
 import { Fieldset } from './components/common/fieldset';
 import { Radio } from './components/common/radio';
+// import { Select } from './components/common/select';
 import { Spacer } from './components/common/spacer';
 import { Input } from './components/common/text-input/text-input';
 import { Toggle } from './components/common/toggle/toggle';
-import { PropertyList } from './components/file-details/list/properties-list';
-import { Property } from './components/file-details/list/property';
-import { PropertiesTabs } from './components/file-details/tabs/tabs';
+import { PropertyList } from './components/files/list/properties-list';
+import { Property } from './components/files/list/property';
+import { PropertiesTabs } from './components/files/tabs/tabs';
 import './app.scss';
 
 export const App = () => {
@@ -16,6 +18,7 @@ export const App = () => {
 
   return (
     <div style={{ width: '100%', padding: '0.5rem 1rem' }}>
+      <Spacer size='medium' />
       <PropertiesTabs
         options={[
           {
@@ -238,6 +241,65 @@ export const App = () => {
                     disabled
                   />
                 </Fieldset>
+                <Spacer size='medium' />
+                {(['primary', 'secondary', 'success', 'info', 'warning', 'danger'] as const).map(v => (
+                  <>
+                    <div
+                      key={v}
+                      style={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        alignItems: 'flex-start',
+                        flexWrap: 'wrap',
+                        gap: '0.8rem'
+                      }}
+                    >
+                      <SplitButton
+                        variant={v}
+                        size='large'
+                        options={[
+                          { name: 'Merge request' },
+                          {
+                            name: 'Squash and merge',
+                            description:
+                              'Lorem Ipsum Sil dolor amet, ipsum tepsum tipitty. Lorem Ipsum Sil dolor amet, ipsum tepsum tipitty Lorem Ipsum Sil dolor amet, ipsum tepsum tipitty'
+                          },
+                          { name: 'Rebase and merge', disabled: true }
+                        ]}
+                      />
+
+                      <SplitButton
+                        variant={v}
+                        size='medium'
+                        options={[
+                          { name: 'Merge request' },
+                          {
+                            name: 'Squash and merge',
+                            description:
+                              'Lorem Ipsum Sil dolor amet, ipsum tepsum tipitty. Lorem Ipsum Sil dolor amet, ipsum tepsum tipitty Lorem Ipsum Sil dolor amet, ipsum tepsum tipitty'
+                          },
+                          { name: 'Rebase and merge' }
+                        ]}
+                      />
+
+                      <SplitButton
+                        optionsPosition='left'
+                        variant={v}
+                        size='small'
+                        options={[
+                          { name: 'Merge request' },
+                          {
+                            name: 'Squash and merge',
+                            description:
+                              'Lorem Ipsum Sil dolor amet, ipsum tepsum tipitty. Lorem Ipsum Sil dolor amet, ipsum tepsum tipitty Lorem Ipsum Sil dolor amet, ipsum tepsum tipitty'
+                          },
+                          { name: 'Rebase and merge' }
+                        ]}
+                      />
+                    </div>
+                    <Spacer size='small' />
+                  </>
+                ))}
               </PropertyList>
             )
           }

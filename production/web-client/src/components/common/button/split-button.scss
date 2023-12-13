@@ -117,6 +117,7 @@ button.split-button {
         .split-button__options__item__description {
           color: var(--th-clr-placeholder-text);
           margin-top: 0.3rem;
+          max-width: 45ch;
         }
       }
 
