@@ -1,0 +1,3 @@
+{
+  "jest.jestCommandLine": "/bin/zsh -c 'npm run test --'"
+}
