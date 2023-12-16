@@ -4,6 +4,7 @@ import Head from 'next/head';
 import StoreProvider from './store-provider';
 import type { Metadata, Viewport } from 'next';
 import './globals.scss';
+import { MSWInit } from './msw-init';
 
 const inter = Inter({
   subsets: ['latin', 'latin-ext'],
@@ -37,6 +38,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </Head>
       <body>
+        <MSWInit />
         <StoreProvider>{children}</StoreProvider>
       </body>
     </html>
