@@ -19,3 +19,15 @@ $breakpoints: (
     @content;
   }
 }
+
+@mixin mqMin($key) {
+  $size: $key;
+
+  @if type-of($key) == 'string' {
+    $size: map-get($breakpoints, $key);
+  }
+
+  @media only screen and (min-width: $size) {
+    @content;
+  }
+}

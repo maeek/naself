@@ -11,6 +11,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    flex: 0 0 auto;
 
     > svg {
       width: 100%;
@@ -33,6 +34,7 @@
     top: 105%;
     left: 50%;
     transform: translateX(-50%);
+    z-index: 100;
 
     &_list {
       display: flex;
@@ -53,6 +55,7 @@
     border-radius: 50%;
     transform-origin: center;
     transition: transform 0.1s ease;
+    flex: 0 0 auto;
   }
 
   &__color:hover {

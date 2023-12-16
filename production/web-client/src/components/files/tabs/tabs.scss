@@ -1,6 +1,7 @@
 .properties__tabs {
   display: flex;
   flex-direction: column;
+  width: 100%;
 
   .tabs__switcher {
     color: var(--th-clr-tabs-switcher-text);

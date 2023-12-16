@@ -1,15 +1,15 @@
-import { ReactNode, useEffect, useLayoutEffect, useRef, useState, useTransition } from 'react';
+import { HTMLAttributes, ReactNode, useEffect, useLayoutEffect, useRef, useState, useTransition } from 'react';
 import { Spacer } from '@/components/common/spacer/spacer';
 import './tabs.scss';
 
-export interface PropertiesTabsProps {
+export interface PropertiesTabsProps extends HTMLAttributes<HTMLDivElement> {
   options: {
     name: string;
     children: ReactNode | (() => ReactNode);
   }[];
 }
 
-export const PropertiesTabs = ({ options }: PropertiesTabsProps) => {
+export const PropertiesTabs = ({ options, ...rest }: PropertiesTabsProps) => {
   const [activeTab, setActiveTab] = useState<string>();
   const [, startTransition] = useTransition();
   const rendererRef = useRef<HTMLDivElement>(null);
@@ -34,7 +34,10 @@ export const PropertiesTabs = ({ options }: PropertiesTabsProps) => {
   const content = options.find(option => option.name === activeTab)?.children ?? options[0].children;
 
   return (
-    <div className='properties__tabs'>
+    <div
+      className='properties__tabs'
+      {...rest}
+    >
       <div className='tabs__switcher'>
         {options.map((option, i) => (
           <button

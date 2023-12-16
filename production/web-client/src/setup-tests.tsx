@@ -5,8 +5,8 @@ import '@testing-library/jest-dom';
 import { RenderOptions, render } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import 'whatwg-fetch';
-import { RootState, createStore } from '@/store';
 import { server } from './mocks/server';
+import { RootState, createStore } from '@/store';
 
 beforeAll(() => server.listen());
 afterEach(() => server.resetHandlers());

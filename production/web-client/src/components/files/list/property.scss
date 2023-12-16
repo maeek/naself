@@ -13,5 +13,6 @@
 
   .property__value {
     display: flex;
+    word-break: break-all;
   }
 }
