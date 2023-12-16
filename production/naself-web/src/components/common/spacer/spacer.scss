@@ -1,0 +1,61 @@
+$spacer-extra-small: 0.5rem;
+$spacer-small: 1rem;
+$spacer-medium: 2rem;
+$spacer-large: 3rem;
+
+@mixin spacer-sizing($type, $size: $spacer-small) {
+  @if $type == 'horizontal' {
+    width: $size;
+  } @else if $type == 'vertical' {
+    height: $size;
+  }
+}
+
+.spacer {
+  position: relative;
+
+  // Horizontal
+  &--horizontal.spacer--extra-small {
+    @include spacer-sizing('horizontal', $spacer-extra-small);
+  }
+
+  &--horizontal.spacer--small {
+    @include spacer-sizing('horizontal', $spacer-small);
+  }
+
+  &--horizontal.spacer--medium {
+    @include spacer-sizing('horizontal', $spacer-medium);
+  }
+
+  &--horizontal.spacer--large {
+    @include spacer-sizing('horizontal', $spacer-large);
+  }
+
+  // Vertical
+  &--vertical.spacer--extra-small {
+    @include spacer-sizing('vertical', $spacer-extra-small);
+  }
+
+  &--vertical.spacer--small {
+    @include spacer-sizing('vertical', $spacer-small);
+  }
+
+  &--vertical.spacer--medium {
+    @include spacer-sizing('vertical', $spacer-medium);
+  }
+
+  &--vertical.spacer--large {
+    @include spacer-sizing('vertical', $spacer-large);
+  }
+
+  &--vertical.spacer--with-divider::after {
+    position: absolute;
+    content: '';
+    height: 0.1rem;
+    width: 100%;
+    background-color: var(--th-clr-spacer-bg);
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}

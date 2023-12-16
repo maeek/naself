@@ -1,0 +1,13 @@
+@use '@/styles/breakpoints' as *;
+
+.big-screen-column {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  @include mqMin(1100px) {
+    max-width: 70rem;
+    align-items: center;
+    margin: 0 auto;
+  }
+}

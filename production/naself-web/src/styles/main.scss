@@ -1,0 +1,26 @@
+@use './reset' as *;
+@use './typography' as *;
+@use './theme' as *;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  background: var(--th-clr-page-bg);
+  color: var(--th-clr-primary-text);
+  margin: 0;
+  height: 100%;
+  transform: translate3d(0, 0, 0);
+  position: relative;
+
+  @include font-family;
+}
+
+#root {
+  height: 100%;
+  min-height: 100%;
+}

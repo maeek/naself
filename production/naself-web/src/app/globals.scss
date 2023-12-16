@@ -1,0 +1,8 @@
+@use '../styles/main' as *;
+
+body {
+  margin: 0;
+  background: var(--th-clr-page-bg, #1b1c22);
+  position: relative;
+  min-height: 100%;
+}
