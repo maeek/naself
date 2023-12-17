@@ -1,6 +1,6 @@
 'use client';
 import { useMemo } from 'react';
-import { useSearchParams } from 'next/navigation';
+import { redirect, useSearchParams } from 'next/navigation';
 import { useTranslation } from 'react-i18next';
 import { BigScreenColumn } from '@/components/common/layouts/big-screen-column';
 import { Center } from '@/components/common/layouts/center';
@@ -24,6 +24,8 @@ export const DetailsClient = ({ path }: { path: string }) => {
     return newPath;
   }, [paramsPath]);
   const name = sanitizedPath.split('/').pop();
+
+  if (!name) return redirect('/');
 
   return (
     <div className='page page--fullsize'>
