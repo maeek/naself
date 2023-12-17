@@ -1,6 +1,6 @@
 import { CSSProperties, MutableRefObject, useEffect, useRef, useState } from 'react';
 import { IconColorPicker, IconFolderFilled, IconRestore } from '@tabler/icons-react';
-import { useClickOutside } from '@/hooks/useClickOutside';
+import { useClickOutside } from '@/components/hooks/useClickOutside';
 import './folder-color-picker.scss';
 
 export interface FolderColorPickerProps {
