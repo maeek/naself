@@ -9,5 +9,5 @@ module.exports = {
   "arrowParens": "avoid",
   "trailingComma": "none",
   "singleAttributePerLine": true,
-  "printWidth": 120,
+  "printWidth": 120
 };

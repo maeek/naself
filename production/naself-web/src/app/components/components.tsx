@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 'use client';
 
 import { IconLinkPlus, IconPlus, IconSearch, IconUserFilled } from '@tabler/icons-react';
@@ -12,11 +13,8 @@ import { Toggle } from '@/components/common/toggle/toggle';
 import { PropertyList } from '@/components/files/list/properties-list';
 import { Property } from '@/components/files/list/property';
 import { PropertiesTabs } from '@/components/files/tabs/tabs';
-import { useGetStatusQuery } from '@/services/api/system.api';
 
 export const ComponentsPreview = () => {
-  const { currentData } = useGetStatusQuery();
-
   return (
     <div style={{ width: '100%', padding: '0.5rem 1rem' }}>
       <Select
@@ -75,7 +73,7 @@ export const ComponentsPreview = () => {
                     key='p-Status'
                     name='Status'
                   >
-                    {currentData?.status ?? 'Loading...'}
+                    Loading...
                   </Property>
                 </PropertyList>
                 <Spacer size='medium' />

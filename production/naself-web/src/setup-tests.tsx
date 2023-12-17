@@ -5,12 +5,7 @@ import '@testing-library/jest-dom';
 import { RenderOptions, render } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import 'whatwg-fetch';
-import { RootState, createStore } from '@/store';
-import { server } from './mocks/server';
-
-beforeAll(() => server.listen());
-afterEach(() => server.resetHandlers());
-afterAll(() => server.close());
+import { RootState, createStore } from '@/lib/store';
 
 type RenderWithStoreOptions = Omit<RenderOptions, 'queries'> & {
   store?: Store;
