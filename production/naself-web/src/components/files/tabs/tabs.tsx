@@ -3,25 +3,34 @@ import { Spacer } from '@/components/common/spacer/spacer';
 import './tabs.scss';
 
 export interface PropertiesTabsProps extends HTMLAttributes<HTMLDivElement> {
+  activeTab?: string | null;
+  onTabChange?: (tab: string) => void;
   options: {
     name: string;
+    label: string;
     children: ReactNode | (() => ReactNode);
   }[];
 }
 
-export const PropertiesTabs = ({ options, ...rest }: PropertiesTabsProps) => {
-  const [activeTab, setActiveTab] = useState<string>();
+export const PropertiesTabs = ({ options, activeTab: controlledTab, onTabChange, ...rest }: PropertiesTabsProps) => {
+  const [activeTab, setActiveTab] = useState<string>(controlledTab || '');
   const [, startTransition] = useTransition();
   const rendererRef = useRef<HTMLDivElement>(null);
   const optionsRefs = useRef<HTMLButtonElement[]>([]);
 
   useEffect(() => {
-    if (!activeTab && options.length > 0) {
+    if (controlledTab) {
+      setActiveTab(controlledTab);
+    }
+  }, [controlledTab]);
+
+  useEffect(() => {
+    if (!activeTab && options.length > 0 && !controlledTab) {
       startTransition(() => {
         setActiveTab(options[0].name);
       });
     }
-  }, [activeTab, options]);
+  }, [controlledTab, activeTab, options]);
 
   useLayoutEffect(() => {
     if (rendererRef.current) {
@@ -51,7 +60,8 @@ export const PropertiesTabs = ({ options, ...rest }: PropertiesTabsProps) => {
             key={option.name}
             onClick={() =>
               startTransition(() => {
-                setActiveTab(option.name);
+                if (onTabChange) onTabChange?.(option.name);
+                else setActiveTab(option.name);
               })
             }
             onKeyUp={e => {
@@ -64,7 +74,7 @@ export const PropertiesTabs = ({ options, ...rest }: PropertiesTabsProps) => {
               }
             }}
           >
-            {option.name}
+            {option.label}
           </button>
         ))}
       </div>

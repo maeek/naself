@@ -1,6 +1,6 @@
 'use client';
-import { useMemo } from 'react';
-import { redirect, useSearchParams } from 'next/navigation';
+import { useEffect, useMemo } from 'react';
+import { redirect, useSearchParams, usePathname, useRouter } from 'next/navigation';
 import { useTranslation } from 'react-i18next';
 import { BigScreenColumn } from '@/components/common/layouts/big-screen-column';
 import { Center } from '@/components/common/layouts/center';
@@ -14,7 +14,10 @@ import { PropertiesTabs } from '@/components/files/tabs/tabs';
 export const DetailsClient = ({ path }: { path: string }) => {
   const { t } = useTranslation();
 
+  const router = useRouter();
+  const location = usePathname();
   const searchParams = useSearchParams();
+  const openedView = searchParams.get('view');
   const paramsPath = path || searchParams.get('path') || '';
   const sanitizedPath = useMemo(() => {
     let newPath = paramsPath;
@@ -24,6 +27,14 @@ export const DetailsClient = ({ path }: { path: string }) => {
     return newPath;
   }, [paramsPath]);
   const name = sanitizedPath.split('/').pop();
+
+  useEffect(() => {
+    if (!searchParams.get('view')) {
+      const newParams = new URLSearchParams(searchParams.toString());
+      newParams.set('view', 'properties');
+      router.replace(`${location}?${newParams.toString()}`);
+    }
+  }, [router, location, searchParams]);
 
   if (!name) return redirect('/');
 
@@ -48,9 +59,16 @@ export const DetailsClient = ({ path }: { path: string }) => {
         <Spacer size='medium' />
         <PropertiesTabs
           style={{ padding: '0 1rem' }}
+          activeTab={openedView}
+          onTabChange={tab => {
+            const newParams = new URLSearchParams(searchParams.toString());
+            newParams.set('view', tab);
+            router.replace(`${location}?${newParams.toString()}`);
+          }}
           options={[
             {
-              name: t('details.properties'),
+              name: 'properties',
+              label: t('details.properties'),
               children: (
                 <PropertyList title='Properties'>
                   <Property name={t('property.name')}>{name}</Property>
@@ -64,7 +82,8 @@ export const DetailsClient = ({ path }: { path: string }) => {
               )
             },
             {
-              name: t('details.sharing'),
+              name: 'sharing',
+              label: t('details.sharing'),
               children: <div />
             }
           ]}
