@@ -31,7 +31,7 @@ export class FilesController {
       .replace(/(\.\.\/)/g, '')
       .replace(/(\/\/)+/g, '/');
 
-    return this.filesService.list(
+    return this.filesService.ls(
       path.resolve(
         `${this.configService.get<string>('data.path')}${restrictedPath}`,
       ),

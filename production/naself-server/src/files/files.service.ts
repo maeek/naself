@@ -2,20 +2,11 @@ import { Injectable } from '@nestjs/common';
 import * as fs from 'fs/promises';
 import * as path from 'path';
 import * as mime from 'mime-types';
-
-export interface FileDescriptor {
-  name: string;
-  isDirectory: boolean;
-  mime: string;
-  size: number;
-  createdAt: number;
-  modifiedAt: number;
-  isSymLink: boolean;
-}
+import { FileDescriptor, FilesImplementation } from './files.interfaces';
 
 @Injectable()
-export class FilesService {
-  async list(folder: string, hidden?: boolean) {
+export class FilesService implements FilesImplementation {
+  async ls(folder: string, hidden?: boolean) {
     try {
       const dirStat = await fs.stat(folder);
       if (!dirStat.isDirectory()) throw new Error('Path is a file');
@@ -63,15 +54,50 @@ export class FilesService {
         children: files,
       };
     } catch (error) {
-      throw new Error(error.message);
+      throw new Error('Folder does not exist or is not accessible');
     }
   }
 
-  inspect(filePath: string) {
-    return `This action returns a #${id} file`;
+  async read(filePath: string): Promise<Buffer> {
+    throw new Error('Method not implemented.');
   }
 
-  create(filePath: string, contents: unknown) {
-    return `This action creates a new file`;
+  async write(filePath: string, content: Buffer): Promise<void> {
+    throw new Error('Method not implemented.');
+  }
+
+  async delete(filePath: string): Promise<void> {
+    throw new Error('Method not implemented.');
+  }
+
+  async move(sourcePath: string, destinationPath: string): Promise<void> {
+    throw new Error('Method not implemented.');
+  }
+
+  async copy(sourcePath: string, destinationPath: string): Promise<void> {
+    throw new Error('Method not implemented.');
+  }
+
+  async createFolder(filePath: string, name: string): Promise<void> {
+    throw new Error('Method not implemented.');
+  }
+
+  async rename(filePath: string, name: string): Promise<void> {
+    throw new Error('Method not implemented.');
+  }
+
+  async stat(filePath: string): Promise<FileDescriptor> {
+    throw new Error('Method not implemented.');
+  }
+
+  async compress(
+    filePath: string,
+    type?: 'zip' | 'tar',
+  ): Promise<{ archivePath: `${string}.zip` | `${string}.tar` }> {
+    throw new Error('Method not implemented.');
+  }
+
+  async decompress(filePath: string): Promise<void> {
+    throw new Error('Method not implemented.');
   }
 }
