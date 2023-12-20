@@ -5,7 +5,8 @@
 FROM node:20-alpine As development
 
 # Create app directory
-WORKDIR /usr/src/app
+WORKDIR /app
+RUN chown -R node:node /app
 
 # Copy application dependency manifests to the container image.
 # A wildcard is used to ensure copying both package.json AND package-lock.json (when available).
@@ -27,12 +28,13 @@ USER node
 
 FROM node:20-alpine As build
 
-WORKDIR /usr/src/app
+WORKDIR /app
+RUN chown -R node:node /app
 
 COPY --chown=node:node package*.json ./
 
 # In order to run `npm run build` we need access to the Nest CLI which is a dev dependency. In the previous development stage we ran `npm ci` which installed all dependencies, so we can copy over the node_modules directory from the development image
-COPY --chown=node:node --from=development /usr/src/app/node_modules ./node_modules
+COPY --chown=node:node --from=development /app/node_modules ./node_modules
 
 COPY --chown=node:node . .
 
@@ -54,9 +56,8 @@ USER node
 FROM node:20-alpine As production
 
 # Copy the bundled code from the build stage to the production image
-COPY --chown=node:node --from=build /usr/src/app/node_modules ./node_modules
-COPY --chown=node:node --from=build /usr/src/app/dist ./dist
-COPY --chown=node:node --from=build /usr/src/app/package*.json ./
+COPY --chown=node:node --from=build /app/node_modules ./node_modules
+COPY --chown=node:node --from=build /app/dist ./dist
 
 VOLUME [ "/data" ]
 

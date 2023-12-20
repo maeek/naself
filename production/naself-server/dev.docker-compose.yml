@@ -2,17 +2,17 @@ services:
   api:
     restart: always
     build:
-      dockerfile: Dockerfile
+      dockerfile: dev.Dockerfile
       context: .
-      target: production
     volumes:
       - .:/app
     environment:
-      NODE_ENV: production
+      NODE_ENV: development
     env_file:
       - .env
     depends_on:
       - db
+      - redis
     ports:
       - 8080:8080
 
