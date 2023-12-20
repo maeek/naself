@@ -1,14 +1,14 @@
 import { Controller, Get, Query } from '@nestjs/common';
-import { FilesService } from './files.service';
+import { FilesystemService } from './filesystem.service';
 import { ApiQuery } from '@nestjs/swagger';
 import * as path from 'path';
 import { ConfigService } from '@nestjs/config';
 
-@Controller('files')
-export class FilesController {
+@Controller('browsing')
+export class BrowsingController {
   constructor(
     private readonly configService: ConfigService,
-    private readonly filesService: FilesService,
+    private readonly filesService: FilesystemService,
   ) {}
 
   @ApiQuery({

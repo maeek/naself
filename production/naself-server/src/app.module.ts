@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { FilesModule } from './files/files.module';
+import { BrowsingModule } from './browsing/browsing.module';
 import { LoggerModule } from 'nestjs-pino';
 import { ConfigModule } from '@nestjs/config';
 import baseConfig from './config/config';
@@ -44,12 +44,15 @@ import { BullModule } from '@nestjs/bull';
       autoLoadEntities: true,
     }),
     BullModule.forRoot({
+      defaultJobOptions: {
+        timeout: 3 * 3600 * 1000, // 3 hours
+      },
       redis: {
         host: process.env.REDIS_HOST,
         port: +process.env.REDIS_PORT || 6379,
       },
     }),
-    FilesModule,
+    BrowsingModule,
   ],
   controllers: [AppController],
   providers: [AppService],
