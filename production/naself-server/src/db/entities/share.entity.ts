@@ -22,11 +22,11 @@ export class Share {
   @Column()
   name: string;
 
-  @Column()
-  description: string;
+  @Column({ nullable: true })
+  description?: string;
 
   @CreateDateColumn({ update: false })
-  date: Date;
+  createdAt: Date;
 
   @CreateDateColumn({ update: true })
   modifiedAt: Date;

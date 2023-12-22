@@ -2,8 +2,6 @@ import { UUID } from 'crypto';
 import {
   Entity,
   Column,
-  ManyToOne,
-  OneToMany,
   PrimaryGeneratedColumn,
   CreateDateColumn,
 } from 'typeorm';
@@ -25,14 +23,8 @@ export class Node {
   @Column({ default: 0 })
   size: number;
 
-  @Column({ default: 0 })
-  createdAt: number;
-
-  @Column({ default: 0 })
-  modifiedAt: number;
-
   @CreateDateColumn({ update: true })
-  lastIndexedAt: number;
+  lastIndexedAt: Date;
 
   @Column({
     unique: true,
@@ -42,12 +34,6 @@ export class Node {
   })
   resourceKey?: UUID;
 
-  @ManyToOne(() => Node, (parent) => parent.children, { nullable: true })
-  parent: Node;
-
-  @OneToMany(() => Node, (child) => child.parent, { nullable: true })
-  children: Node[];
-
-  @Column({ default: 0 })
-  depth: number;
+  @Column()
+  linkExists: boolean;
 }

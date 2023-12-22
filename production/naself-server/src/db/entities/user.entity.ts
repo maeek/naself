@@ -30,7 +30,7 @@ export class User {
   locale: string;
 
   @CreateDateColumn({ update: false })
-  createdAt: number;
+  createdAt: Date;
 
   @Column({ nullable: true })
   home?: string;
