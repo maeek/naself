@@ -1,14 +1,16 @@
+import { ReactNode } from 'react';
 import classNames from 'classnames';
 import './spacer.scss';
 
 export interface SpacerProps {
   size?: 'extra-small' | 'small' | 'medium' | 'large';
   type?: 'horizontal' | 'vertical';
+  children?: ReactNode;
   withDivider?: boolean;
   className?: string;
 }
 
-export const Spacer = ({ size = 'medium', type = 'vertical', withDivider, className }: SpacerProps) => {
+export const Spacer = ({ size = 'medium', type = 'vertical', withDivider, className, children }: SpacerProps) => {
   return (
     <div
       data-testid='spacer'
@@ -21,6 +23,8 @@ export const Spacer = ({ size = 'medium', type = 'vertical', withDivider, classN
         },
         className
       )}
-    />
+    >
+      {children}
+    </div>
   );
 };

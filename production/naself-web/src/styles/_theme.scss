@@ -8,6 +8,8 @@
       --th-#{$key + ""}: #{$value};
     }
   }
+
+  color-scheme: var(--th-color-scheme);
 }
 
 // .light {

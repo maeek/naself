@@ -1,5 +1,7 @@
+'use client';
 import { CSSProperties, MutableRefObject, useEffect, useRef, useState } from 'react';
 import { IconColorPicker, IconFolderFilled, IconRestore } from '@tabler/icons-react';
+import { DEFAULT_COLORS } from '@/components/common/colors';
 import { useClickOutside } from '@/components/hooks/useClickOutside';
 import './folder-color-picker.scss';
 
@@ -8,8 +10,6 @@ export interface FolderColorPickerProps {
   colors?: string[];
   onChange?: (color: string) => void;
 }
-
-const DEFAULT_COLORS = ['#2387fa', '#e74c3c', '#f1c40f', '#27ae60', '#9b59b6', '#e67e22', '#95a5a6', '#2c3e50'];
 
 export const FolderColorPicker = ({ color = '#2387fa', colors = DEFAULT_COLORS, onChange }: FolderColorPickerProps) => {
   const [selectedColor, setSelectedColor] = useState(color);

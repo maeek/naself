@@ -1,0 +1,95 @@
+.files-list-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 0.4rem;
+  border-radius: var(--th-border-radius);
+  border: 0.1rem solid transparent;
+  cursor: default;
+  user-select: none;
+  outline-offset: 0.3rem;
+  transition: outline-offset 0.1s;
+  outline-color: var(--th-clr-accent);
+
+  &__info {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1rem;
+    overflow: hidden;
+    flex: 0 1 auto;
+    width: 50%;
+  }
+
+  &__name {
+    color: var(--th-clr-secondary-text);
+    font-size: 1.15rem;
+    font-weight: 400;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: block;
+    overflow: hidden;
+  }
+
+  &__icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--th-border-radius);
+
+    &.file {
+      color: var(--_icon-color, var(--th-clr-gray-lighten-1));
+      background-color: #2e333d;
+    }
+
+    &.folder {
+      color: var(--_icon-color, var(--th-clr-gray-lighten-1));
+      & > svg {
+        width: 2.2rem;
+        height: 2.2rem;
+      }
+    }
+  }
+
+  &__details {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    color: var(--th-clr-placeholder-text);
+    font-size: 0.9rem;
+    flex: 1 1 auto;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: auto;
+    white-space: nowrap;
+    margin-left: 1rem;
+  }
+
+  &__right,
+  &__actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    flex: 1 1 auto;
+  }
+
+  &--shared {
+    color: var(--th-clr-accent-lighten-1);
+  }
+
+  &:active,
+  &:focus-within,
+  &--selected {
+    border-color: var(--th-clr-accent);
+    background-color: #1e2129;
+    outline-offset: 0.1rem;
+  }
+
+  &:active {
+    border-color: var(--th-clr-accent-lighten-1);
+  }
+}

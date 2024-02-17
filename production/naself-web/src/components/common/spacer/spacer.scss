@@ -13,6 +13,10 @@ $spacer-large: 3rem;
 
 .spacer {
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
 
   // Horizontal
   &--horizontal.spacer--extra-small {

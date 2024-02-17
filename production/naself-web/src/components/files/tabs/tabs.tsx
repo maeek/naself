@@ -7,7 +7,7 @@ export interface PropertiesTabsProps extends HTMLAttributes<HTMLDivElement> {
   onTabChange?: (tab: string) => void;
   options: {
     name: string;
-    label: string;
+    label?: string;
     children: ReactNode | (() => ReactNode);
   }[];
 }
@@ -74,7 +74,7 @@ export const PropertiesTabs = ({ options, activeTab: controlledTab, onTabChange,
               }
             }}
           >
-            {option.label}
+            {option.label || option.name}
           </button>
         ))}
       </div>

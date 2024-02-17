@@ -1,16 +1,17 @@
-import { ChangeEventHandler, InputHTMLAttributes, ReactNode, forwardRef } from 'react';
+import { ReactNode, forwardRef } from 'react';
 import { IconChevronDown } from '@tabler/icons-react';
 import classNames from 'classnames';
 import './select.scss';
 
-export interface SelectProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'prefix'> {
+export interface SelectProps {
   prefix?: ReactNode;
   label?: ReactNode;
+  className?: string;
   searchable?: boolean;
   description?: ReactNode;
   disabled?: boolean;
   value?: string;
-  onChange?: ChangeEventHandler<HTMLInputElement>;
+  onChange?: (value: unknown) => void;
   options: {
     value: string;
     label?: string;
@@ -19,8 +20,8 @@ export interface SelectProps extends Omit<InputHTMLAttributes<HTMLInputElement>,
   }[];
 }
 
-export const Select = forwardRef<HTMLInputElement, SelectProps>(
-  ({ prefix, options, className, value, onChange, disabled, searchable, type = 'text', ...props }, ref) => {
+export const Select = forwardRef<HTMLDivElement, SelectProps>(
+  ({ prefix, options, className, value, onChange, disabled, searchable, ...props }, ref) => {
     const optionsByGroup = options.reduce(
       (acc, option) => {
         if (option.group) {
@@ -36,8 +37,12 @@ export const Select = forwardRef<HTMLInputElement, SelectProps>(
       },
       {} as Record<string, typeof options>
     );
+
     return (
-      <div className='select__container'>
+      <div
+        className='select__container'
+        ref={ref}
+      >
         <label
           aria-disabled={disabled}
           className={classNames(
@@ -51,9 +56,8 @@ export const Select = forwardRef<HTMLInputElement, SelectProps>(
           {prefix ? <div className='select__prefix'>{prefix}</div> : null}
           <input
             {...props}
-            type={type}
+            type='text'
             readOnly={!searchable}
-            ref={ref}
             value={value}
             onChange={onChange}
             disabled={disabled}
@@ -78,6 +82,14 @@ export const Select = forwardRef<HTMLInputElement, SelectProps>(
                   })}
                   disabled={option.disabled}
                   key={group + option.value}
+                  onClick={e => {
+                    if (option.disabled) {
+                      e.preventDefault();
+                      return;
+                    }
+                    onChange?.(option.value);
+                    e.currentTarget.blur();
+                  }}
                 >
                   {option.label ?? option.value}
                 </button>

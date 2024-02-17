@@ -7,8 +7,8 @@ import { Center } from '@/components/common/layouts/center';
 import { Spacer } from '@/components/common/spacer';
 import { Heading } from '@/components/common/typo/heading';
 import { FolderColorPicker } from '@/components/files/folder-color-picker/folder-color-picker';
-import { PropertyList } from '@/components/files/list/properties-list';
-import { Property } from '@/components/files/list/property';
+import { PropertyList } from '@/components/files/properties/properties-list';
+import { Property } from '@/components/files/properties/property';
 import { PropertiesTabs } from '@/components/files/tabs/tabs';
 
 export const DetailsClient = ({ path }: { path: string }) => {
