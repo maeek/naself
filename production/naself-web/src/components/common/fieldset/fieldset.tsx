@@ -1,19 +1,19 @@
-import { ChangeEventHandler, Children, HTMLAttributes, ReactElement, ReactNode, cloneElement } from 'react';
-import classNames from 'classnames';
-import { Spacer, SpacerProps } from '../spacer';
-import { FieldsetContextProvider } from './fieldset-context';
-import './fieldset.scss';
+import { ChangeEventHandler, Children, HTMLAttributes, ReactElement, ReactNode, cloneElement } from 'react'
+import classNames from 'classnames'
+import { Spacer, SpacerProps } from '../spacer'
+import { FieldsetContextProvider } from './fieldset-context'
+import './fieldset.scss'
 
 export interface FieldsetProps extends Omit<HTMLAttributes<HTMLFieldSetElement>, 'onChange'> {
-  title?: string;
-  description?: string;
-  children?: ReactNode;
-  layout?: 'horizontal' | 'vertical';
-  htmlFor?: string;
-  disabled?: boolean;
-  name?: string;
-  onChange?: ChangeEventHandler<HTMLInputElement>;
-  box?: boolean;
+  title?: string
+  description?: string
+  children?: ReactNode
+  layout?: 'horizontal' | 'vertical'
+  htmlFor?: string
+  disabled?: boolean
+  name?: string
+  onChange?: ChangeEventHandler<HTMLInputElement>
+  box?: boolean
 }
 
 export const Fieldset = ({
@@ -32,7 +32,7 @@ export const Fieldset = ({
       {title ? <legend className='fieldset__title'>{title}</legend> : null}
       {description ? <div className='fieldset__description'>{description}</div> : null}
     </>
-  );
+  )
 
   return (
     <FieldsetContextProvider value={{ disabled, onChange, name }}>
@@ -47,19 +47,19 @@ export const Fieldset = ({
             // check if child exist and if it is a spacer
             // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-member-access
             if (!child || (child as any).type !== Spacer) {
-              return child;
+              return child
             }
 
-            const typedChild = child as ReactElement<SpacerProps>;
+            const typedChild = child as ReactElement<SpacerProps>
 
             return cloneElement(typedChild, {
               ...typedChild.props,
               withDivider: box,
               type: layout
-            });
+            })
           })}
         </div>
       </fieldset>
     </FieldsetContextProvider>
-  );
-};
+  )
+}

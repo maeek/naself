@@ -1,8 +1,8 @@
-import './properties-list.scss';
+import './properties-list.scss'
 
 export interface PropertyListProps {
-  title?: string;
-  children?: React.ReactNode;
+  title?: string
+  children?: React.ReactNode
 }
 
 export const PropertyList = ({ title, children }: PropertyListProps) => {
@@ -11,5 +11,5 @@ export const PropertyList = ({ title, children }: PropertyListProps) => {
       <h5 className='properties__title'>{title}</h5>
       <ul className='properties__list'>{children}</ul>
     </div>
-  );
-};
+  )
+}

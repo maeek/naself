@@ -1,24 +1,24 @@
-import { ChangeEventHandler, InputHTMLAttributes, ReactNode, forwardRef } from 'react';
-import classNames from 'classnames';
-import { useFieldSetContext } from '../fieldset/fieldset-context';
-import './radio.scss';
+import { ChangeEventHandler, InputHTMLAttributes, ReactNode, forwardRef } from 'react'
+import classNames from 'classnames'
+import { useFieldSetContext } from '../fieldset/fieldset-context'
+import './radio.scss'
 
 export interface RadioProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'prefix' | 'type'> {
-  prefix?: ReactNode;
-  label?: ReactNode;
+  prefix?: ReactNode
+  label?: ReactNode
   /**
    * Only visible when label is provided
    */
-  description?: ReactNode;
-  checked?: boolean;
-  disabled?: boolean;
-  onChange?: ChangeEventHandler<HTMLInputElement>;
+  description?: ReactNode
+  checked?: boolean
+  disabled?: boolean
+  onChange?: ChangeEventHandler<HTMLInputElement>
 }
 
 export const Radio = forwardRef<HTMLInputElement, RadioProps>(
   ({ prefix, label, className, checked, onChange, disabled, name, description, ...props }, ref) => {
-    const { disabled: disabledByContext, onChange: onChangeByContext, name: nameByContext } = useFieldSetContext();
-    const isDisabled = disabled ?? disabledByContext ?? false;
+    const { disabled: disabledByContext, onChange: onChangeByContext, name: nameByContext } = useFieldSetContext()
+    const isDisabled = disabled ?? disabledByContext ?? false
 
     return (
       <div className='radio__container'>
@@ -40,8 +40,8 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(
             ref={ref}
             checked={checked}
             onChange={e => {
-              onChange?.(e);
-              onChangeByContext?.(e);
+              onChange?.(e)
+              onChangeByContext?.(e)
             }}
             disabled={isDisabled}
             aria-disabled={isDisabled}
@@ -57,6 +57,6 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(
           ) : null}
         </label>
       </div>
-    );
+    )
   }
-);
+)

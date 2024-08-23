@@ -1,23 +1,23 @@
-import { ReactNode, forwardRef } from 'react';
-import { IconChevronDown } from '@tabler/icons-react';
-import classNames from 'classnames';
-import './select.scss';
+import { ReactNode, forwardRef } from 'react'
+import { IconChevronDown } from '@tabler/icons-react'
+import classNames from 'classnames'
+import './select.scss'
 
 export interface SelectProps {
-  prefix?: ReactNode;
-  label?: ReactNode;
-  className?: string;
-  searchable?: boolean;
-  description?: ReactNode;
-  disabled?: boolean;
-  value?: string;
-  onChange?: (value: unknown) => void;
+  prefix?: ReactNode
+  label?: ReactNode
+  className?: string
+  searchable?: boolean
+  description?: ReactNode
+  disabled?: boolean
+  value?: string
+  onChange?: (value: unknown) => void
   options: {
-    value: string;
-    label?: string;
-    disabled?: boolean;
-    group?: string;
-  }[];
+    value: string
+    label?: string
+    disabled?: boolean
+    group?: string
+  }[]
 }
 
 export const Select = forwardRef<HTMLDivElement, SelectProps>(
@@ -26,17 +26,17 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(
       (acc, option) => {
         if (option.group) {
           if (!acc[option.group]) {
-            acc[option.group] = [];
+            acc[option.group] = []
           }
-          acc[option.group].push(option);
+          acc[option.group].push(option)
         } else {
-          acc[''] = acc[''] ?? [];
-          acc[''].push(option);
+          acc[''] = acc[''] ?? []
+          acc[''].push(option)
         }
-        return acc;
+        return acc
       },
       {} as Record<string, typeof options>
-    );
+    )
 
     return (
       <div
@@ -84,11 +84,11 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(
                   key={group + option.value}
                   onClick={e => {
                     if (option.disabled) {
-                      e.preventDefault();
-                      return;
+                      e.preventDefault()
+                      return
                     }
-                    onChange?.(option.value);
-                    e.currentTarget.blur();
+                    onChange?.(option.value)
+                    e.currentTarget.blur()
                   }}
                 >
                   {option.label ?? option.value}
@@ -98,6 +98,6 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(
           ))}
         </div>
       </div>
-    );
+    )
   }
-);
+)

@@ -1,0 +1,78 @@
+@use '@/styles/breakpoints' as *;
+
+.burger-button {
+  align-items: center;
+  justify-content: center;
+  border: 0.1rem solid red;
+  width: 3rem;
+  height: 3rem;
+  flex: 0 0 auto;
+  position: relative;
+  border: 0.1rem solid var(--th-clr-bg);
+  background-color: var(--th-clr-bg-darken-2);
+  border-radius: var(--th-border-radius);
+  outline-offset: 0.3rem;
+  outline-color: var(--th-clr-input-outline-color);
+  transition:
+    outline-offset 0.15s ease-in-out,
+    background-color 0.05s ease-out,
+    border-color 0.05s ease-out,
+    color 0.05s ease-out;
+  display: none;
+
+  @include mq(1024px) {
+    display: flex;
+  }
+
+  &:hover {
+    background-color: var(--th-clr-bg-semi-transparent);
+    border: 0.1rem solid var(--th-clr-bg-lighten-2);
+  }
+
+  &:focus-within {
+    outline: auto;
+    outline-offset: 0.1rem;
+    outline-color: var(--th-clr-input-outline-color);
+  }
+
+  .burger-icon {
+    width: 1.5rem;
+    height: 0.15rem;
+    background-color: var(--th-clr-accent-lighten-2);
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: var(--th-border-radius);
+    transition: all 0.1s ease-in-out;
+
+    &-1 {
+      top: 0.7rem;
+
+      &.open {
+        top: 1.3rem;
+        transform: rotate(45deg) translateX(-50%);
+        transform-origin: center left;
+      }
+    }
+
+    &-2 {
+      top: 1.3rem;
+      transform: translateX(-50%) scaleX(1);
+
+      &.open {
+        transform: translateX(-50%) scaleX(0);
+        opacity: 0;
+      }
+    }
+
+    &-3 {
+      top: 1.9rem;
+
+      &.open {
+        top: 1.3rem;
+        transform: rotate(-45deg) translateX(-50%);
+        transform-origin: center left;
+      }
+    }
+  }
+}

@@ -1,14 +1,14 @@
-import { ButtonHTMLAttributes, DetailedHTMLProps, MouseEventHandler, ReactNode } from 'react';
-import classNames from 'classnames';
-import './button.scss';
+import { ButtonHTMLAttributes, DetailedHTMLProps, MouseEventHandler, ReactNode } from 'react'
+import classNames from 'classnames'
+import './button.scss'
 
 export interface ButtonProps
   extends Omit<DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>, 'prefix'> {
-  size?: 'small' | 'medium' | 'large';
-  variant?: 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info' | 'outline';
-  prefix?: ReactNode;
-  suffix?: ReactNode;
-  onClick?: MouseEventHandler<HTMLButtonElement>;
+  size?: 'small' | 'medium' | 'large'
+  variant?: 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info' | 'outline'
+  prefix?: ReactNode
+  suffix?: ReactNode
+  onClick?: MouseEventHandler<HTMLButtonElement>
 }
 
 export const Button = ({
@@ -41,5 +41,5 @@ export const Button = ({
       <span className='button__content'>{children}</span>
       {suffix ? <span className='button__suffix'>{suffix}</span> : null}
     </button>
-  );
-};
+  )
+}

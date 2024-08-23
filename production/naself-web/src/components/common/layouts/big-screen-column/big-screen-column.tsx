@@ -1,9 +1,9 @@
-import { HTMLAttributes, ReactNode } from 'react';
-import classNames from 'classnames';
-import './big-screen-column.scss';
+import { HTMLAttributes, ReactNode } from 'react'
+import classNames from 'classnames'
+import './big-screen-column.scss'
 
 export interface BigScreenColumnProps extends HTMLAttributes<HTMLDivElement> {
-  children: ReactNode;
+  children: ReactNode
 }
 
 export const BigScreenColumn = ({ children, className, ...rest }: BigScreenColumnProps) => {
@@ -14,5 +14,5 @@ export const BigScreenColumn = ({ children, className, ...rest }: BigScreenColum
     >
       {children}
     </div>
-  );
-};
+  )
+}

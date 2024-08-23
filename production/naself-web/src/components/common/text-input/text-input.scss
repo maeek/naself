@@ -8,14 +8,24 @@
   background-color: var(--th-clr-input-bg);
   border-radius: var(--th-border-radius);
   padding: 0 0.5rem;
+  width: 100%;
   outline-offset: 0.3rem;
   outline-color: var(--th-clr-input-outline-color);
-  width: 100%;
   transition:
     outline-offset 0.15s ease-in-out,
     background-color 0.05s ease-out,
     border-color 0.05s ease-out,
     color 0.05s ease-out;
+
+  &__container--fit {
+    width: 100%;
+    height: 100%;
+
+    input,
+    label {
+      height: 100%;
+    }
+  }
 
   .input__prefix > svg {
     width: 1.1rem;

@@ -1,46 +1,46 @@
-import { HTMLAttributes, ReactNode, useEffect, useLayoutEffect, useRef, useState, useTransition } from 'react';
-import { Spacer } from '@/components/common/spacer/spacer';
-import './tabs.scss';
+import { HTMLAttributes, ReactNode, useEffect, useLayoutEffect, useRef, useState, useTransition } from 'react'
+import { Spacer } from '@/components/common/spacer/spacer'
+import './tabs.scss'
 
 export interface PropertiesTabsProps extends HTMLAttributes<HTMLDivElement> {
-  activeTab?: string | null;
-  onTabChange?: (tab: string) => void;
+  activeTab?: string | null
+  onTabChange?: (tab: string) => void
   options: {
-    name: string;
-    label?: string;
-    children: ReactNode | (() => ReactNode);
-  }[];
+    name: string
+    label?: string
+    children: ReactNode | (() => ReactNode)
+  }[]
 }
 
 export const PropertiesTabs = ({ options, activeTab: controlledTab, onTabChange, ...rest }: PropertiesTabsProps) => {
-  const [activeTab, setActiveTab] = useState<string>(controlledTab || '');
-  const [, startTransition] = useTransition();
-  const rendererRef = useRef<HTMLDivElement>(null);
-  const optionsRefs = useRef<HTMLButtonElement[]>([]);
+  const [activeTab, setActiveTab] = useState<string>(controlledTab || '')
+  const [, startTransition] = useTransition()
+  const rendererRef = useRef<HTMLDivElement>(null)
+  const optionsRefs = useRef<HTMLButtonElement[]>([])
 
   useEffect(() => {
     if (controlledTab) {
-      setActiveTab(controlledTab);
+      setActiveTab(controlledTab)
     }
-  }, [controlledTab]);
+  }, [controlledTab])
 
   useEffect(() => {
     if (!activeTab && options.length > 0 && !controlledTab) {
       startTransition(() => {
-        setActiveTab(options[0].name);
-      });
+        setActiveTab(options[0].name)
+      })
     }
-  }, [controlledTab, activeTab, options]);
+  }, [controlledTab, activeTab, options])
 
   useLayoutEffect(() => {
     if (rendererRef.current) {
       rendererRef.current.getAnimations().forEach(animation => {
-        animation.play();
-      });
+        animation.play()
+      })
     }
-  }, [activeTab]);
+  }, [activeTab])
 
-  const content = options.find(option => option.name === activeTab)?.children ?? options[0].children;
+  const content = options.find(option => option.name === activeTab)?.children ?? options[0].children
 
   return (
     <div
@@ -52,7 +52,7 @@ export const PropertiesTabs = ({ options, activeTab: controlledTab, onTabChange,
           <button
             ref={node => {
               if (node) {
-                optionsRefs.current[i] = node;
+                optionsRefs.current[i] = node
               }
             }}
             className='tabs__tab'
@@ -60,17 +60,17 @@ export const PropertiesTabs = ({ options, activeTab: controlledTab, onTabChange,
             key={option.name}
             onClick={() =>
               startTransition(() => {
-                if (onTabChange) onTabChange?.(option.name);
-                else setActiveTab(option.name);
+                if (onTabChange) onTabChange?.(option.name)
+                else setActiveTab(option.name)
               })
             }
             onKeyUp={e => {
               if (e.key === 'ArrowLeft') {
-                const index = i === 0 ? options.length - 1 : i - 1;
-                optionsRefs.current[index].focus();
+                const index = i === 0 ? options.length - 1 : i - 1
+                optionsRefs.current[index].focus()
               } else if (e.key === 'ArrowRight') {
-                const index = i === options.length - 1 ? 0 : i + 1;
-                optionsRefs.current[index].focus();
+                const index = i === options.length - 1 ? 0 : i + 1
+                optionsRefs.current[index].focus()
               }
             }}
           >
@@ -87,5 +87,5 @@ export const PropertiesTabs = ({ options, activeTab: controlledTab, onTabChange,
         {typeof content === 'function' ? content() : content}
       </div>
     </div>
-  );
-};
+  )
+}

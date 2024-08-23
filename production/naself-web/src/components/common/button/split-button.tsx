@@ -1,27 +1,27 @@
-import { ButtonHTMLAttributes, DetailedHTMLProps, MouseEventHandler, ReactNode } from 'react';
-import { IconChevronDown } from '@tabler/icons-react';
-import classNames from 'classnames';
-import './split-button.scss';
+import { ButtonHTMLAttributes, DetailedHTMLProps, MouseEventHandler, ReactNode } from 'react'
+import { IconChevronDown } from '@tabler/icons-react'
+import classNames from 'classnames'
+import './split-button.scss'
 
 export interface SplitButtonProps
   extends Omit<DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>, 'prefix' | 'children'> {
-  size?: 'small' | 'medium' | 'large';
-  variant?: 'primary' | 'secondary' | 'success' | 'info' | 'warning' | 'danger';
-  prefix?: ReactNode;
-  suffix?: ReactNode;
-  onClick?: MouseEventHandler<HTMLButtonElement>;
-  optionsPosition?: 'left' | 'right';
+  size?: 'small' | 'medium' | 'large'
+  variant?: 'primary' | 'secondary' | 'success' | 'info' | 'warning' | 'danger'
+  prefix?: ReactNode
+  suffix?: ReactNode
+  onClick?: MouseEventHandler<HTMLButtonElement>
+  optionsPosition?: 'left' | 'right' | 'bottom'
   options: {
-    name: string;
-    description?: string;
+    name: string
+    description?: string
     /**
      * if children are provided, description and name is ignored,
      * the name is still neded to be used as key
      */
-    children?: ReactNode;
-    disabled?: boolean;
-    onClick?: MouseEventHandler<HTMLButtonElement>;
-  }[];
+    children?: ReactNode
+    disabled?: boolean
+    onClick?: MouseEventHandler<HTMLButtonElement>
+  }[]
 }
 
 export const SplitButton = ({
@@ -56,7 +56,10 @@ export const SplitButton = ({
         <span className='split-button__content'>{options[0].name}</span>
         {suffix ? <span className='split-button__suffix'>{suffix}</span> : null}
       </button>
-      <div className='split-button__arrow'>
+      <div
+        className='split-button__arrow'
+        tabIndex={0}
+      >
         <IconChevronDown />
         <ul className={classNames('split-button__options', `split-button__options--${optionsPosition}`)}>
           {options.slice(1).map(opt => (
@@ -81,5 +84,5 @@ export const SplitButton = ({
         </ul>
       </div>
     </div>
-  );
-};
+  )
+}

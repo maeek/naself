@@ -1,0 +1,33 @@
+.profile-square {
+  padding: 0.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &__container {
+    width: 100%;
+    background-color: var(--th-clr-bg-darken-1);
+    border-radius: var(--th-border-radius);
+  }
+
+  &__left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  &__icon {
+    flex: 0 0 auto;
+    width: 2.4rem;
+    height: 2.4rem;
+    padding: 0.1rem;
+    border-radius: 50%;
+    background-color: var(--th-clr-bg);
+    background: url(https://static.suchanecki.me/pepe1.jpg);
+    background-size: cover;
+  }
+
+  &__username {
+    font-weight: 700;
+  }
+}

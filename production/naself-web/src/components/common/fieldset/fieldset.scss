@@ -28,12 +28,13 @@
     justify-content: space-between;
     align-items: flex-start;
     flex-wrap: nowrap;
+    gap: 0.5rem;
 
     .fieldset__content {
       display: flex;
       height: 100%;
       flex-direction: row;
-      margin-top: 0.2rem;
+      margin-top: 0.6rem;
     }
   }
 
@@ -70,6 +71,9 @@
 
       .fieldset__content {
         margin-top: 0;
+        display: flex;
+        align-items: flex-start;
+        padding-top: 1.5rem;
       }
     }
 

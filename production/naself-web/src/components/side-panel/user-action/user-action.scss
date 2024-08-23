@@ -1,0 +1,58 @@
+.panel-user-action {
+  &__container {
+    padding: 0.5rem 1rem;
+    position: sticky;
+  }
+
+  & {
+    display: flex;
+    position: relative;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 0.8rem;
+    border-radius: var(--th-border-radius);
+    background-color: var(--th-clr-bg-darken-1);
+  }
+
+  &__progress {
+    width: 2.6rem;
+    height: 2.6rem;
+    flex: 0 0 auto;
+    border-radius: 50%;
+    background-color: var(--th-clr-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    border: 0.2rem solid var(--th-clr-accent);
+  }
+
+  &__info {
+    display: flex;
+    font-size: 0.9rem;
+    flex-direction: column;
+    flex: 1 1 auto;
+    gap: 0.2rem;
+    width: calc(100% - 2.6rem - 0.75rem);
+  }
+
+  &__description {
+    font-size: 0.8rem;
+    color: var(--th-clr-secondary-text);
+    display: flex;
+    justify-content: space-between;
+    flex: 0 1 100%;
+    position: relative;
+
+    &-text {
+      text-overflow: ellipsis;
+      overflow: hidden;
+      max-width: 70%;
+      text-wrap: nowrap;
+    }
+  }
+
+  &__action {
+    color: var(--th-clr-red-lighten-1);
+  }
+}

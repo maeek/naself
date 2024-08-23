@@ -1,0 +1,11 @@
+@use '@/styles/breakpoints' as *;
+
+.panel {
+  &-list {
+    display: flex;
+    flex-direction: column;
+    transform: translate3d(0, 0, 0);
+    background-color: var(--th-clr-bg);
+    user-select: none;
+  }
+}

@@ -4,7 +4,7 @@ $default-theme-dark: (
   bg: #1e2129,
   bg-lighten-1: #293542,
   bg-lighten-2: lighten(#293542, 10%),
-  bg-darken-1: #1b1c22,
+  bg-darken-1: #1d1f26,
   bg-darken-2: darken(#1b1c22, 3%),
   bg-semi-transparent: rgba(#000, 0.3),
   // Views
@@ -121,8 +121,8 @@ $default-theme-dark: (
 
   // Input
   // ==========================
-  input-bg: #293542,
-  input-border: #293542,
+  input-bg: #272b36,
+  input-border: #272b36,
   input-text: #d9e0e8,
   input-outline-color: #2387fa,
   input-placeholder-text: #a1a8b0,
@@ -183,6 +183,7 @@ $default-theme-dark: (
   accent: #2387fa,
   accent-lighten-1: #84c1ff,
   accent-lighten-2: #b3d8ff,
+  accent-translucent: rgba(35, 135, 250, 0.15),
   accent-border: rgba(#2387fa, 0.66),
   accent-disabled: darken(#2387fa, 20%),
   // Red

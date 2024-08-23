@@ -86,6 +86,8 @@ button.split-button {
     max-width: 95vw;
     transition-duration: 0.05s;
     box-shadow: 0 0 0.2rem var(--th-clr-bg-semi-transparent);
+    z-index: 100;
+    min-width: 10rem;
 
     &--right {
       right: 0;
@@ -93,6 +95,13 @@ button.split-button {
 
     &--left {
       left: 0;
+    }
+
+    &--bottom {
+      right: unset;
+      left: 0;
+      top: 100%;
+      height: fit-content;
     }
 
     &__item {

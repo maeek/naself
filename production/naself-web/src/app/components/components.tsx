@@ -1,21 +1,27 @@
 /* eslint-disable no-console */
-'use client';
+'use client'
 
-import { IconLinkPlus, IconPlus, IconSearch, IconUserFilled } from '@tabler/icons-react';
-import 'focus-visible';
-import { Button, SplitButton } from '@/components/common/button';
-import { Fieldset } from '@/components/common/fieldset';
-import { Radio } from '@/components/common/radio';
-import { Select } from '@/components/common/select';
-import { Spacer } from '@/components/common/spacer';
-import { Input } from '@/components/common/text-input/text-input';
-import { Toggle } from '@/components/common/toggle/toggle';
-import { PropertyList } from '@/components/files/properties/properties-list';
-import { Property } from '@/components/files/properties/property';
+import { IconLinkPlus, IconPlus, IconSearch, IconUserFilled } from '@tabler/icons-react'
+import 'focus-visible'
+import { Button, SplitButton } from '@/components/common/button'
+import { Checkbox } from '@/components/common/checkbox'
+import { Fieldset } from '@/components/common/fieldset'
+import { Radio } from '@/components/common/radio'
+import { Select } from '@/components/common/select'
+import { Spacer } from '@/components/common/spacer'
+import { Input } from '@/components/common/text-input/text-input'
+import { Toggle } from '@/components/common/toggle/toggle'
+import { PropertyList } from '@/components/files/properties/properties-list'
+import { Property } from '@/components/files/properties/property'
 
 export const ComponentsPreview = () => {
   return (
     <div style={{ width: '100%', padding: '0.5rem 1rem' }}>
+      <Checkbox />
+      <Checkbox />
+      <Checkbox />
+      <Checkbox />
+      <Spacer size='medium' />
       <Select
         options={[
           { value: 'aaa', label: 'eee', group: 'main' },
@@ -152,11 +158,11 @@ export const ComponentsPreview = () => {
             prefix='Select me'
             onChange={e => {
               if (e.target.checked) {
-                document.querySelector('html')!.classList.remove('dark');
-                document.querySelector('html')!.classList.add('light');
+                document.querySelector('html')!.classList.remove('dark')
+                document.querySelector('html')!.classList.add('light')
               } else {
-                document.querySelector('html')!.classList.remove('light');
-                document.querySelector('html')!.classList.add('dark');
+                document.querySelector('html')!.classList.remove('light')
+                document.querySelector('html')!.classList.add('dark')
               }
             }}
           />
@@ -327,5 +333,5 @@ export const ComponentsPreview = () => {
         ))}
       </PropertyList>
     </div>
-  );
-};
+  )
+}

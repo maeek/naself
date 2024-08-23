@@ -1,8 +1,10 @@
+@use '@/styles/breakpoints' as *;
+
 .files-list-item {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.5rem 0.4rem;
+  padding: 0.3rem 0.4rem;
   border-radius: var(--th-border-radius);
   border: 0.1rem solid transparent;
   cursor: default;
@@ -10,6 +12,19 @@
   outline-offset: 0.3rem;
   transition: outline-offset 0.1s;
   outline-color: var(--th-clr-accent);
+  height: 100%;
+
+  &__wrapper {
+    padding: 0 2rem;
+
+    @include mq(1024px) {
+      padding: 0;
+    }
+
+    &.odd .files-list-item {
+      background-color: var(--th-clr-bg-darken-1);
+    }
+  }
 
   &__info {
     display: flex;
@@ -23,7 +38,7 @@
 
   &__name {
     color: var(--th-clr-secondary-text);
-    font-size: 1.15rem;
+    font-size: 1rem;
     font-weight: 400;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -42,7 +57,19 @@
 
     &.file {
       color: var(--_icon-color, var(--th-clr-gray-lighten-1));
-      background-color: #2e333d;
+      position: relative;
+
+      &::before {
+        border-radius: var(--th-border-radius);
+        background-color: var(--_icon-color, #2e333d);
+        opacity: 0.3;
+        position: absolute;
+        content: '';
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+      }
     }
 
     &.folder {
@@ -75,17 +102,18 @@
     justify-content: flex-end;
     gap: 0.5rem;
     flex: 1 1 auto;
+    padding-right: 0.2rem;
   }
 
   &--shared {
-    color: var(--th-clr-accent-lighten-1);
+    color: var(--th-clr-accent);
   }
 
   &:active,
   &:focus-within,
   &--selected {
-    border-color: var(--th-clr-accent);
-    background-color: #1e2129;
+    background-color: var(--th-clr-accent-translucent) !important;
+    border-color: var(--th-clr-accent) !important;
     outline-offset: 0.1rem;
   }
 

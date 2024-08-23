@@ -1,35 +1,35 @@
-'use client';
-import { CSSProperties, MutableRefObject, useEffect, useRef, useState } from 'react';
-import { IconColorPicker, IconFolderFilled, IconRestore } from '@tabler/icons-react';
-import { DEFAULT_COLORS } from '@/components/common/colors';
-import { useClickOutside } from '@/components/hooks/useClickOutside';
-import './folder-color-picker.scss';
+'use client'
+import { CSSProperties, MutableRefObject, useEffect, useRef, useState } from 'react'
+import { IconColorPicker, IconFolderFilled, IconRestore } from '@tabler/icons-react'
+import { DEFAULT_COLORS } from '@/components/common/colors'
+import { useClickOutside } from '@/components/hooks/useClickOutside'
+import './folder-color-picker.scss'
 
 export interface FolderColorPickerProps {
-  color?: string;
-  colors?: string[];
-  onChange?: (color: string) => void;
+  color?: string
+  colors?: string[]
+  onChange?: (color: string) => void
 }
 
 export const FolderColorPicker = ({ color = '#2387fa', colors = DEFAULT_COLORS, onChange }: FolderColorPickerProps) => {
-  const [selectedColor, setSelectedColor] = useState(color);
-  const [initialColor] = useState(color);
-  const [isOpened, setIsOpened] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-  const entryBtnRef = useRef<HTMLDivElement>(null);
-  const colorInputRef = useRef<HTMLInputElement>(null);
-  useClickOutside(() => setIsOpened(false), ref as MutableRefObject<HTMLDivElement>);
+  const [selectedColor, setSelectedColor] = useState(color)
+  const [initialColor] = useState(color)
+  const [isOpened, setIsOpened] = useState(false)
+  const ref = useRef<HTMLDivElement>(null)
+  const entryBtnRef = useRef<HTMLDivElement>(null)
+  const colorInputRef = useRef<HTMLInputElement>(null)
+  useClickOutside(() => setIsOpened(false), ref as MutableRefObject<HTMLDivElement>)
 
   useEffect(() => {
-    if (color !== initialColor) setSelectedColor(color);
-  }, [initialColor, color]);
+    if (color !== initialColor) setSelectedColor(color)
+  }, [initialColor, color])
 
   const onChangeColor = (newColor: string) => {
-    setIsOpened(false);
-    setSelectedColor(newColor);
-    onChange?.(newColor);
-    entryBtnRef.current?.focus();
-  };
+    setIsOpened(false)
+    setSelectedColor(newColor)
+    onChange?.(newColor)
+    entryBtnRef.current?.focus()
+  }
 
   return (
     <div
@@ -42,8 +42,8 @@ export const FolderColorPicker = ({ color = '#2387fa', colors = DEFAULT_COLORS, 
           className='folder-color-picker__selected'
           style={{ backgroundColor: selectedColor } as CSSProperties}
           onClick={() => {
-            setSelectedColor(initialColor);
-            setIsOpened(prev => !prev);
+            setSelectedColor(initialColor)
+            setIsOpened(prev => !prev)
           }}
         />
       </div>
@@ -52,8 +52,8 @@ export const FolderColorPicker = ({ color = '#2387fa', colors = DEFAULT_COLORS, 
           <button
             className='folder-color-picker__restore'
             onClick={() => {
-              setIsOpened(false);
-              entryBtnRef.current?.focus();
+              setIsOpened(false)
+              entryBtnRef.current?.focus()
             }}
           >
             <IconRestore />
@@ -80,7 +80,7 @@ export const FolderColorPicker = ({ color = '#2387fa', colors = DEFAULT_COLORS, 
           <button
             className='folder-color-picker__color_picker'
             onClick={() => {
-              colorInputRef.current?.click();
+              colorInputRef.current?.click()
             }}
           >
             <IconColorPicker />
@@ -88,13 +88,13 @@ export const FolderColorPicker = ({ color = '#2387fa', colors = DEFAULT_COLORS, 
               ref={colorInputRef}
               type='color'
               onChange={e => {
-                setSelectedColor(e.target.value);
-                onChange?.(e.target.value);
+                setSelectedColor(e.target.value)
+                onChange?.(e.target.value)
               }}
             />
           </button>
         </div>
       )}
     </div>
-  );
-};
+  )
+}

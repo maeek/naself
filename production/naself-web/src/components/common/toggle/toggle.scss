@@ -16,6 +16,7 @@
     background-color: var(--th-clr-toggle-switch-bg);
     outline: none;
     box-shadow: inset 0 0 0.2rem var(--th-clr-bg-semi-transparent);
+    display: flex;
 
     &__knob {
       margin: 0.1rem;

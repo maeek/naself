@@ -1,21 +1,21 @@
-import { ChangeEventHandler, createContext, useContext } from 'react';
+import { ChangeEventHandler, createContext, useContext } from 'react'
 
 export interface FieldsetContext {
-  name?: string;
-  onChange?: ChangeEventHandler<HTMLInputElement>;
-  disabled?: boolean;
+  name?: string
+  onChange?: ChangeEventHandler<HTMLInputElement>
+  disabled?: boolean
 }
 
-export const fieldsetContext = createContext<FieldsetContext>({});
+export const fieldsetContext = createContext<FieldsetContext>({})
 
-export const FieldsetContextProvider = fieldsetContext.Provider;
+export const FieldsetContextProvider = fieldsetContext.Provider
 
 export const useFieldSetContext = () => {
-  const context = useContext(fieldsetContext);
+  const context = useContext(fieldsetContext)
 
   if (context === undefined) {
-    return {} as FieldsetContext;
+    return {} as FieldsetContext
   }
 
-  return context;
-};
+  return context
+}

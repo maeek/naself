@@ -1,21 +1,21 @@
-import { ChangeEventHandler, InputHTMLAttributes, ReactNode, forwardRef } from 'react';
-import classNames from 'classnames';
-import { useFieldSetContext } from '../fieldset/fieldset-context';
-import './toggle.scss';
+import { ChangeEventHandler, InputHTMLAttributes, ReactNode, forwardRef } from 'react'
+import classNames from 'classnames'
+import { useFieldSetContext } from '../fieldset/fieldset-context'
+import './toggle.scss'
 
 export interface ToggleProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'prefix' | 'type'> {
-  prefix?: ReactNode;
-  suffix?: ReactNode;
-  label?: ReactNode;
-  checked?: boolean;
-  disabled?: boolean;
-  onChange?: ChangeEventHandler<HTMLInputElement>;
+  prefix?: ReactNode
+  suffix?: ReactNode
+  label?: ReactNode
+  checked?: boolean
+  disabled?: boolean
+  onChange?: ChangeEventHandler<HTMLInputElement>
 }
 
 export const Toggle = forwardRef<HTMLInputElement, ToggleProps>(
   ({ prefix, suffix, className, checked, onChange, disabled, name, ...props }, ref) => {
-    const { disabled: disabledByContext, onChange: onChangeByContext, name: nameByContext } = useFieldSetContext();
-    const isDisabled = disabled ?? disabledByContext ?? false;
+    const { disabled: disabledByContext, onChange: onChangeByContext, name: nameByContext } = useFieldSetContext()
+    const isDisabled = disabled ?? disabledByContext ?? false
 
     return (
       <div className='toggle__container'>
@@ -34,8 +34,8 @@ export const Toggle = forwardRef<HTMLInputElement, ToggleProps>(
             {...props}
             name={name ?? nameByContext}
             onChange={e => {
-              onChange?.(e);
-              onChangeByContext?.(e);
+              onChange?.(e)
+              onChangeByContext?.(e)
             }}
             type='checkbox'
             ref={ref}
@@ -49,6 +49,6 @@ export const Toggle = forwardRef<HTMLInputElement, ToggleProps>(
           {suffix ? <div className='toggle__suffix'>{suffix}</div> : null}
         </label>
       </div>
-    );
+    )
   }
-);
+)
