@@ -14,8 +14,8 @@ export class Node {
   @Column({ unique: true })
   path: string;
 
-  @Column()
-  name: string;
+  @Column({ type: 'text', default: '' })
+  meta: string;
 
   @Column({ default: false })
   isDirectory: boolean;
@@ -35,5 +35,5 @@ export class Node {
   resourceKey?: UUID;
 
   @Column()
-  linkExists: boolean;
+  isSymLink: boolean;
 }

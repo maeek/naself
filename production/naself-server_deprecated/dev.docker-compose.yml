@@ -6,6 +6,7 @@ services:
       context: .
     volumes:
       - .:/app
+      - /home/maek/Documents:/data
     environment:
       NODE_ENV: development
     env_file:
