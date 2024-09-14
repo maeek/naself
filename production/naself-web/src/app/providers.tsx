@@ -1,17 +1,17 @@
-'use client';
+'use client'
 
-import { PropsWithChildren, useRef, useState } from 'react';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { httpBatchLink } from '@trpc/client';
-import { i18n } from 'i18next';
-import { I18nextProvider } from 'react-i18next';
-import { Provider } from 'react-redux';
-import { trpc } from '@/app/_trpc/client';
-import i18nInstance from '@/lib/i18n/instance';
-import { AppStore, createStore } from '@/lib/store';
+import { PropsWithChildren, useRef, useState } from 'react'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { httpBatchLink } from '@trpc/client'
+import { i18n } from 'i18next'
+import { I18nextProvider } from 'react-i18next'
+import { Provider } from 'react-redux'
+import { trpc } from '@/app/_trpc/client'
+import i18nInstance from '@/lib/i18n/instance'
+import { AppStore, createStore } from '@/lib/store'
 
 const Providers = ({ children }: PropsWithChildren) => {
-  const [queryClient] = useState(() => new QueryClient());
+  const [queryClient] = useState(() => new QueryClient())
   const [trpcClient] = useState(() =>
     trpc.createClient({
       links: [
@@ -20,10 +20,10 @@ const Providers = ({ children }: PropsWithChildren) => {
         })
       ]
     })
-  );
-  const storeRef = useRef<AppStore>();
+  )
+  const storeRef = useRef<AppStore>()
   if (!storeRef.current) {
-    storeRef.current = createStore();
+    storeRef.current = createStore()
   }
 
   return (
@@ -42,7 +42,7 @@ const Providers = ({ children }: PropsWithChildren) => {
         </Provider>
       </QueryClientProvider>
     </trpc.Provider>
-  );
-};
+  )
+}
 
-export default Providers;
+export default Providers
