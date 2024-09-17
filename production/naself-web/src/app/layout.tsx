@@ -1,10 +1,12 @@
 import { CSSProperties } from 'react'
-import classNames from 'classnames'
 import localFont from 'next/font/local'
 import Head from 'next/head'
+import { ThemeProvider } from '@/components/theme-provider'
+// eslint-disable-next-line import/order
+import './globals.scss'
+import './globals.css'
 import Providers from './providers'
 import type { Metadata, Viewport } from 'next'
-import './globals.scss'
 
 const ubuntu = localFont({
   src: [
@@ -44,7 +46,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html
       lang='en'
       dir='ltr'
-      className={classNames('dark', ubuntu.className)}
+      className={ubuntu.className}
       style={
         {
           '--font-ubuntu': ubuntu.style.fontFamily
@@ -59,8 +61,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </Head>
       <body>
-        <div id='modal-root' />
-        <Providers>{children}</Providers>
+        <ThemeProvider
+          attribute='class'
+          defaultTheme='system'
+          enableSystem
+          disableTransitionOnChange
+        >
+          <div id='modal-root' />
+          <Providers>{children}</Providers>
+        </ThemeProvider>
       </body>
     </html>
   )
