@@ -38,7 +38,7 @@ export const SystemChart = ({ cpuData }: { cpuData: [Date, number][] }) => {
   return (
     <ChartContainer
       config={chartConfig}
-      className='h-full w-full'
+      className='h-full w-full pb-3'
     >
       <LineChart
         accessibilityLayer

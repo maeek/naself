@@ -1,41 +1,31 @@
 'use client'
 
 import { Label, PolarGrid, PolarRadiusAxis, RadialBar, RadialBarChart } from 'recharts'
-import {
-  ChartConfig,
-  ChartContainer,
-  ChartLegend,
-  ChartLegendContent,
-  ChartTooltip,
-  ChartTooltipContent
-} from '@/components/ui/chart'
+import { ChartContainer } from '@/components/ui/chart'
 
 export const description = 'A radial chart with text'
 
-const chartConfig = {
-  memory: {
-    label: 'Memory'
-  },
-  mem_usage: {
-    label: 'Memory usage',
-    color: 'hsl(var(--chart-2))'
-  }
-} satisfies ChartConfig
-
 export function MemoryChart({ totalMemory, freeMemory }: { totalMemory: number; freeMemory: number }) {
-  const chartData = [
-    { memory: Math.round(((totalMemory - freeMemory) / totalMemory) * 100), fill: 'var(--color-mem_usage)' }
-  ]
+  const memory = Math.round(((totalMemory - freeMemory) / totalMemory) * 100)
+  const chartData = [{ memory, fill: 'var(--color-mem_usage)' }]
 
   return (
     <ChartContainer
-      config={chartConfig}
+      config={{
+        memory: {
+          label: 'Memory'
+        },
+        mem_usage: {
+          label: 'Memory usage',
+          color: `hsl(var(--chart-${memory > 75 ? '3' : '2'}))`
+        }
+      }}
       className='mx-auto aspect-square max-h-[340px] w-full flex flex-col'
     >
       <RadialBarChart
         data={chartData}
         startAngle={90}
-        endAngle={90 - chartData[0].memory * 3.6}
+        endAngle={90 - memory * 3.6}
         innerRadius={120}
         outerRadius={170}
       >

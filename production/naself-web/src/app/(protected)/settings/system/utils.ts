@@ -1,5 +1,47 @@
 import os from 'os'
 
+// In-memory store for the last 50 CPU usage percentages
+const cpuUsagePercentLast50Entrires: [Date, number][] = []
+
+function getCPUUsageOverInterval(interval = 1000) {
+  const startTimes = os.cpus().map(cpu => cpu.times)
+
+  setTimeout(() => {
+    const endTimes = os.cpus().map(cpu => cpu.times)
+    let totalStartIdle = 0
+    let totalStartTick = 0
+    let totalEndIdle = 0
+    let totalEndTick = 0
+
+    // Calculate the total start and end idle and ticks for all CPUs
+    startTimes.forEach((start, index) => {
+      const end = endTimes[index]
+
+      totalStartIdle += start.idle
+      totalStartTick += start.user + start.nice + start.sys + start.idle + start.irq
+      totalEndIdle += end.idle
+      totalEndTick += end.user + end.nice + end.sys + end.idle + end.irq
+    })
+
+    // Calculate the difference in idle and total times
+    const idleDifference = totalEndIdle - totalStartIdle
+    const totalDifference = totalEndTick - totalStartTick
+
+    // CPU usage is 100% minus the idle time percentage
+    const cpuUsage = (1 - idleDifference / totalDifference) * 100
+
+    cpuUsagePercentLast50Entrires.push([new Date(), +cpuUsage.toFixed(2)])
+
+    if (cpuUsagePercentLast50Entrires.length > 50) {
+      cpuUsagePercentLast50Entrires.shift()
+    }
+  }, interval)
+}
+
+setInterval(() => {
+  getCPUUsageOverInterval(1000)
+}, 1000)
+
 export function formatBytes(bytes: number, decimals = 2) {
   if (bytes === 0) return '0 Bytes'
   const k = 1024
@@ -17,20 +59,7 @@ export function formatUptime(seconds: number) {
   return `${hrs}h ${mins}m ${Math.ceil(secs)}s`
 }
 
-const cpuUsagePercentLast50Entrires: [Date, number][] = []
-
-setInterval(() => {
-  // get CPU percent utilization
-  const cpuUsage = os.loadavg()[0] / os.cpus().length
-  cpuUsagePercentLast50Entrires.push([new Date(), cpuUsage * 100])
-
-  if (cpuUsagePercentLast50Entrires.length > 50) {
-    cpuUsagePercentLast50Entrires.shift()
-  }
-}, 3000)
-
-// eslint-disable-next-line @typescript-eslint/require-await
-export async function getSystemStats() {
+export function getSystemStats() {
   return {
     platform: os.platform(),
     architecture: os.arch(),
