@@ -1,3 +1,6 @@
+'use client'
+
+import classNames from 'classnames'
 import {
   ActivityIcon,
   BookmarkIcon,
@@ -11,15 +14,18 @@ import {
   ServerIcon,
   SettingsIcon,
   Share2Icon,
-  ShareIcon,
   ShieldCheckIcon,
   UsersIcon
 } from 'lucide-react'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
 export default function Sidebar() {
+  const pathname = usePathname()
+
   const filesSections = [
-    { name: 'Recent', Icon: ClockIcon },
-    { name: 'All Files', Icon: FilesIcon },
+    { name: 'Recent', Icon: ClockIcon, href: '/files/recent' },
+    { name: 'All Files', Icon: FilesIcon, href: '/files/all' },
     { name: 'Bookmarks', Icon: BookmarkIcon },
     { name: 'Shared with me', Icon: Share2Icon }
   ]
@@ -42,20 +48,27 @@ export default function Sidebar() {
   ]
 
   return (
-    <aside className='h-full w-72 border-r border-r-layout-border flex flex-col bg-layout overflow-auto pb-8'>
+    <aside className='h-full w-72 border-r border-r-layout-border flex flex-col bg-layout overflow-auto pb-8 fixed left-0 top-16 max-lg:hidden'>
       <div className='w-full py-6 flex flex-col px-2'>
         <h6 className='text-xs pb-2 font-semibold color-secondary px-2'>Files</h6>
         <ul className='w-full pb-6 flex flex-col'>
-          {filesSections.map(({ name, Icon }) => (
-            <li
+          {filesSections.map(({ name, Icon, href }) => (
+            <Link
               key={name}
-              className='flex gap-3 justify-start items-center px-2 py-1 hover:bg-input rounded-sm text-primary hover:text-white cursor-pointer'
+              href={href || '/'}
             >
-              <div className='w-6 h-6 rounded-sm flex justify-center items-center'>
-                <Icon className='w-4 h-4 stroke-current' />
-              </div>
-              <span className='text-sm text-inherit'>{name}</span>
-            </li>
+              <li
+                className={classNames(
+                  'flex gap-3 justify-start items-center px-2 py-1 hover:bg-input rounded-sm text-foreground hover:text-white cursor-pointer',
+                  { 'bg-input': pathname === href }
+                )}
+              >
+                <div className='w-6 h-6 rounded-sm flex justify-center items-center'>
+                  <Icon className='w-4 h-4 stroke-current' />
+                </div>
+                <span className='text-sm text-inherit'>{name}</span>
+              </li>
+            </Link>
           ))}
         </ul>
         <h6 className='text-xs pb-2 font-semibold color-secondary px-2'>Settings</h6>
@@ -63,7 +76,7 @@ export default function Sidebar() {
           {settingsSections.map(({ name, Icon }) => (
             <li
               key={name}
-              className='flex gap-3 justify-start items-center px-2 py-1 hover:bg-input rounded-sm text-primary hover:text-white cursor-pointer'
+              className='flex gap-3 justify-start items-center px-2 py-1 hover:bg-input rounded-sm text-foreground hover:text-white cursor-pointer'
             >
               <div className='w-6 h-6 rounded-sm flex justify-center items-center'>
                 <Icon className='w-4 h-4 stroke-current' />
@@ -77,7 +90,7 @@ export default function Sidebar() {
           {appsSections.map(({ name, Icon }) => (
             <li
               key={name}
-              className='flex gap-3 justify-start items-center px-2 py-1 hover:bg-input rounded-sm text-primary hover:text-white cursor-pointer'
+              className='flex gap-3 justify-start items-center px-2 py-1 hover:bg-input rounded-sm text-foreground hover:text-white cursor-pointer'
             >
               <div className='w-6 h-6 rounded-sm flex justify-center items-center'>
                 <Icon className='w-4 h-4 stroke-current' />
