@@ -1,12 +1,11 @@
 'use client'
 
 import * as React from 'react'
-import { UserPlus, Mail, MessageSquare, PlusCircle, SunMoon, Sun, Moon } from 'lucide-react'
+import { SunMoon, Sun, Moon } from 'lucide-react'
 import { useTheme } from 'next-themes'
 import {
   DropdownMenuItem,
   DropdownMenuPortal,
-  DropdownMenuSeparator,
   DropdownMenuSub,
   DropdownMenuSubContent,
   DropdownMenuSubTrigger

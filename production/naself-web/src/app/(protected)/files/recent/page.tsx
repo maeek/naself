@@ -1,3 +1,4 @@
+import { Suspense } from 'react'
 import { FolderSyncIcon, ListFilter } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { LayoutButton } from '../_components/layout-button'
@@ -26,7 +27,9 @@ export default function Recent() {
           </Button>
         </div>
       </section>
-      <FileTags />
+      <Suspense fallback={null}>
+        <FileTags />
+      </Suspense>
       <section>
         <h2 className='py-4 pt-6 px-6 font-semibold'>Last 24h</h2>
         <h2 className='py-4 px-6 font-semibold'>Last week</h2>

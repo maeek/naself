@@ -1,3 +1,4 @@
+import { Suspense } from 'react'
 import { ArrowUpIcon, FolderSyncIcon, HomeIcon, ListFilter } from 'lucide-react'
 import {
   Breadcrumb,
@@ -60,7 +61,9 @@ export default function AllFiles() {
       </section>
       <h2 className='px-6 text-xl font-semibold'>Design</h2>
       <p className='pb-3 px-6 text-sm'>3 files</p>
-      <FileTags />
+      <Suspense fallback={null}>
+        <FileTags />
+      </Suspense>
       <section></section>
     </main>
   )

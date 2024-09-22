@@ -38,11 +38,11 @@ export default function Sidebar() {
     { name: 'Security', Icon: ShieldCheckIcon },
     { name: 'External Storage', Icon: ServerIcon },
     { name: 'Jobs', Icon: PackageCheckIcon },
-    { name: 'System', Icon: ServerIcon }
+    { name: 'System', Icon: ServerIcon, href: '/settings/system' }
   ]
 
   const appsSections = [
-    { name: 'Clipboard', Icon: ClipboardIcon },
+    { name: 'Clipboard', Icon: ClipboardIcon, href: '/apps/clipboard' },
     { name: 'Converter', Icon: FolderSyncIcon },
     { name: 'Downloader', Icon: HardDriveDownloadIcon }
   ]
@@ -73,30 +73,44 @@ export default function Sidebar() {
         </ul>
         <h6 className='text-xs pb-2 font-semibold color-secondary px-2'>Settings</h6>
         <ul className='w-full pb-6 flex flex-col'>
-          {settingsSections.map(({ name, Icon }) => (
-            <li
+          {settingsSections.map(({ name, Icon, href }) => (
+            <Link
               key={name}
-              className='flex gap-3 justify-start items-center px-2 py-1 hover:bg-input rounded-sm text-foreground hover:text-white cursor-pointer'
+              href={href || '/'}
             >
-              <div className='w-6 h-6 rounded-sm flex justify-center items-center'>
-                <Icon className='w-4 h-4 stroke-current' />
-              </div>
-              <span className='text-sm text-inherit'>{name}</span>
-            </li>
+              <li
+                className={classNames(
+                  'flex gap-3 justify-start items-center px-2 py-1 hover:bg-input rounded-sm text-foreground hover:text-white cursor-pointer',
+                  { 'bg-input': pathname === href }
+                )}
+              >
+                <div className='w-6 h-6 rounded-sm flex justify-center items-center'>
+                  <Icon className='w-4 h-4 stroke-current' />
+                </div>
+                <span className='text-sm text-inherit'>{name}</span>
+              </li>
+            </Link>
           ))}
         </ul>
         <h6 className='text-xs pb-2 font-semibold color-secondary px-2'>Tools</h6>
         <ul className='w-full pb-6 flex flex-col'>
-          {appsSections.map(({ name, Icon }) => (
-            <li
+          {appsSections.map(({ name, Icon, href }) => (
+            <Link
               key={name}
-              className='flex gap-3 justify-start items-center px-2 py-1 hover:bg-input rounded-sm text-foreground hover:text-white cursor-pointer'
+              href={href || '/'}
             >
-              <div className='w-6 h-6 rounded-sm flex justify-center items-center'>
-                <Icon className='w-4 h-4 stroke-current' />
-              </div>
-              <span className='text-sm text-inherit'>{name}</span>
-            </li>
+              <li
+                className={classNames(
+                  'flex gap-3 justify-start items-center px-2 py-1 hover:bg-input rounded-sm text-foreground hover:text-white cursor-pointer',
+                  { 'bg-input': pathname === href }
+                )}
+              >
+                <div className='w-6 h-6 rounded-sm flex justify-center items-center'>
+                  <Icon className='w-4 h-4 stroke-current' />
+                </div>
+                <span className='text-sm text-inherit'>{name}</span>
+              </li>
+            </Link>
           ))}
         </ul>
       </div>

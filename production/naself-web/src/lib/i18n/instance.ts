@@ -1,12 +1,12 @@
-'use client';
+'use client'
 
-import dayjs from 'dayjs';
-import { createInstance } from 'i18next';
-import { initReactI18next } from 'react-i18next';
-import backend from './backend';
-import { selectLanguage } from './locales';
+import dayjs from 'dayjs'
+import { createInstance } from 'i18next'
+import { initReactI18next } from 'react-i18next'
+import backend from './backend'
+import { selectLanguage } from './locales'
 
-const i18nInstance = createInstance();
+const i18nInstance = createInstance()
 
 // eslint-disable-next-line @typescript-eslint/no-floating-promises
 i18nInstance
@@ -21,8 +21,8 @@ i18nInstance
     interpolation: {
       escapeValue: false
     }
-  });
+  })
 
-dayjs.locale(i18nInstance.language);
+dayjs.locale(i18nInstance.language)
 
-export default i18nInstance;
+export default i18nInstance

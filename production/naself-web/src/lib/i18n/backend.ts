@@ -1,5 +1,5 @@
-'use client';
-import type { BackendModule, CallbackError, ResourceKey } from 'i18next';
+'use client'
+import type { BackendModule, CallbackError, ResourceKey } from 'i18next'
 
 export default {
   type: 'backend',
@@ -12,6 +12,6 @@ export default {
       `../../locales/${language}/${namespace}`
     )
       .then(({ default: data }: { default: ResourceKey }) => callback(null, data))
-      .catch((error: CallbackError) => callback(error, {}));
+      .catch((error: CallbackError) => callback(error, {}))
   }
-} as BackendModule;
+} as BackendModule

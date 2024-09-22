@@ -1,6 +1,5 @@
 import Sidebar from '@/app/(protected)/_components/sidebar'
 import { TopBarProtected } from './_components/top-bar'
-import './layout.scss'
 
 export default function FilesLayout({ children }: { children: React.ReactNode }) {
   return (
