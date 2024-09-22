@@ -19,7 +19,7 @@ export const TopBarProtected = () => {
   const sectionClasses = 'flex items-center h-full px-4 gap-x-4'
 
   return (
-    <div className='flex justify-between h-16 w-dvw border-b border-b-layout-border bg-layout flex-shrink-0 sticky top-0'>
+    <div className='z-50 flex justify-between h-16 w-dvw border-b border-b-layout-border bg-layout flex-shrink-0 sticky top-0'>
       <div className={classNames(sectionClasses, 'justify-start')}>
         <Link href='/'>
           <NaselfLogo />
