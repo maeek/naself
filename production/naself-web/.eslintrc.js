@@ -1,4 +1,4 @@
-const path = require('path');
+const path = require('path')
 
 /** @type {import('@types/eslint').Linter.Config} */
 module.exports = {
@@ -125,4 +125,4 @@ module.exports = {
     ],
     'eol-last': 'error'
   }
-};
+}
