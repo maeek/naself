@@ -7,6 +7,7 @@ import './globals.scss'
 import './globals.css'
 import Providers from './providers'
 import type { Metadata, Viewport } from 'next'
+import { Toaster } from '@/components/ui/toaster'
 
 const ubuntu = localFont({
   src: [
@@ -69,6 +70,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         >
           <div id='modal-root' />
           <Providers>{children}</Providers>
+          <Toaster />
         </ThemeProvider>
       </body>
     </html>

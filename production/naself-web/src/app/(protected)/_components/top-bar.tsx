@@ -16,7 +16,7 @@ import { NaselfLogo } from '@/components/ui/naself-logo'
 import { ThemeToggle } from '@/components/ui/theme-toggle'
 
 export const TopBarProtected = () => {
-  const sectionClasses = 'flex items-center h-full px-4 gap-x-4 max-sm:px-2'
+  const sectionClasses = 'flex items-center h-full px-4 gap-x-4 max-sm:px-2 sm:w-[33%]'
 
   return (
     <div className='z-50 flex justify-between h-16 w-dvw border-b border-b-layout-border bg-layout flex-shrink-0 sticky top-0'>
@@ -25,7 +25,9 @@ export const TopBarProtected = () => {
           <NaselfLogo />
         </Link>
       </div>
-      <div className={classNames(sectionClasses, 'justify-center flex-initial w-full max-w-screen-sm')}>
+      <div
+        className={classNames(sectionClasses, 'justify-center flex-initial w-[26rem] max-sm:w-full max-w-screen-sm')}
+      >
         <Input
           placeholder='Search files or execute an action'
           type='search'

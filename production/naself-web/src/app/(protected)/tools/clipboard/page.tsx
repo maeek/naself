@@ -1,32 +1,46 @@
 'use client'
 import { useRef, useState } from 'react'
-import { Copy, Download } from 'lucide-react'
+import { Copy, Download, Link, Save } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Textarea } from '@/components/ui/textarea'
+import { useToast } from '@/hooks/use-toast'
 
 export default function ClipboardPage() {
   const [clipboard, setClipboard] = useState('')
+  const { toast } = useToast()
   const textareaRef = useRef<HTMLTextAreaElement>(null)
 
   return (
     <main className='row-layout flex-col max-w-100dvh h-full'>
       <section className='py-4 px-4 flex items-center justify-between gap-3 flex-shrink-0'>
         <h2 className='text-xl font-semibold'>Clipboard</h2>
-        <div className='flex gap-2'>
+        <div className='flex'>
           <Button
             size='sm'
-            className='flex items-center'
+            className='flex items-center rounded-tr-none rounded-br-none border-r'
             variant='secondary'
             onClick={() => {
-              textareaRef.current?.select()
-              void navigator.clipboard.writeText(clipboard)
+              navigator.clipboard
+                .writeText(clipboard)
+                .then(() => {
+                  toast({
+                    title: 'Copied to clipboard'
+                  })
+                })
+                .catch(() => {
+                  toast({
+                    title: 'Failed to copy to clipboard',
+                    description: 'Clipboard write is not allowed',
+                    variant: 'destructive'
+                  })
+                })
             }}
           >
             <Copy className='h-4 w-4' />
           </Button>
           <Button
             size='sm'
-            className='flex items-center'
+            className='flex items-center rounded-tl-none rounded-bl-none'
             variant='secondary'
             onClick={() => {
               const blob = new Blob([clipboard], { type: 'text/plain' })
@@ -40,12 +54,25 @@ export default function ClipboardPage() {
           >
             <Download className='h-4 w-4' />
           </Button>
+          <Button
+            size='sm'
+            className='flex items-center ml-2'
+            variant='secondary'
+          >
+            <Link className='h-4 w-4' />
+          </Button>
+          <Button
+            size='sm'
+            className='flex items-center ml-2 gap-2 font-semibold'
+          >
+            <Save className='h-4 w-4' /> Save
+          </Button>
         </div>
       </section>
-      <section className='w-full h-[calc(100%-5rem)] flex-grow flex-shrink px-4'>
+      <section className='w-full h-[calc(100%-4.5rem)] max-sm:h-[calc(100%-4rem)] flex-grow flex-shrink max-sm:px-0 px-2'>
         <Textarea
           ref={textareaRef}
-          className='h-full bg-card'
+          className='h-full bg-input border rounded-md max-sm:rounded-none'
           onChange={e => setClipboard(e.target.value)}
           value={clipboard}
         />
