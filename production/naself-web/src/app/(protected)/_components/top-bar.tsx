@@ -16,11 +16,11 @@ import { NaselfLogo } from '@/components/ui/naself-logo'
 import { ThemeToggle } from '@/components/ui/theme-toggle'
 
 export const TopBarProtected = () => {
-  const sectionClasses = 'flex items-center h-full px-4 gap-x-4'
+  const sectionClasses = 'flex items-center h-full px-4 gap-x-4 max-sm:px-2'
 
   return (
     <div className='z-50 flex justify-between h-16 w-dvw border-b border-b-layout-border bg-layout flex-shrink-0 sticky top-0'>
-      <div className={classNames(sectionClasses, 'justify-start')}>
+      <div className={classNames(sectionClasses, 'justify-start max-sm:hidden')}>
         <Link href='/'>
           <NaselfLogo />
         </Link>
@@ -29,11 +29,11 @@ export const TopBarProtected = () => {
         <Input
           placeholder='Search files or execute an action'
           type='search'
-          className='h-10'
+          className='h-10 placeholder:text-ellipsis'
         />
       </div>
       <div className={classNames(sectionClasses, 'justify-end')}>
-        <Button className='font-semibold'>Upload</Button>
+        <Button className='font-semibold max-sm:hidden'>Upload</Button>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Avatar>
