@@ -2,12 +2,12 @@ import { CSSProperties } from 'react'
 import localFont from 'next/font/local'
 import Head from 'next/head'
 import { ThemeProvider } from '@/components/theme-provider'
+import { Toaster } from '@/components/ui/toaster'
 // eslint-disable-next-line import/order
 import './globals.scss'
 import './globals.css'
 import Providers from './providers'
 import type { Metadata, Viewport } from 'next'
-import { Toaster } from '@/components/ui/toaster'
 
 const ubuntu = localFont({
   src: [
