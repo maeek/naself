@@ -42,7 +42,7 @@ export default function Sidebar() {
   ]
 
   const appsSections = [
-    { name: 'Clipboard', Icon: ClipboardIcon, href: '/apps/clipboard' },
+    { name: 'Clipboard', Icon: ClipboardIcon, href: '/tools/clipboard' },
     { name: 'Converter', Icon: FolderSyncIcon },
     { name: 'Downloader', Icon: HardDriveDownloadIcon }
   ]
