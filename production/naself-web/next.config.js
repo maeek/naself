@@ -8,6 +8,15 @@ const nextConfig = {
   },
   compiler: {
     styledComponents: true
+  },
+  redirects: async () => {
+    return [
+      {
+        source: '/',
+        destination: '/files/all',
+        permanent: true
+      }
+    ]
   }
 }
 
