@@ -47,7 +47,8 @@ export default function ClipboardPage() {
               const url = URL.createObjectURL(blob)
               const a = document.createElement('a')
               a.href = url
-              a.download = 'clipboard.txt'
+              const date = new Date()
+              a.download = `${date.toISOString().split('.')[0]}_clipboard.txt`
               a.click()
               URL.revokeObjectURL(url)
             }}
@@ -69,12 +70,13 @@ export default function ClipboardPage() {
           </Button>
         </div>
       </section>
-      <section className='w-full h-[calc(100%-4.5rem)] max-sm:h-[calc(100%-4rem)] flex-grow flex-shrink max-sm:px-0 px-2'>
+      <section className='w-full h-[calc(100dvh-9rem)] max-sm:h-[calc(100dvh-8rem)] flex-grow flex-shrink max-sm:px-0 px-2'>
         <Textarea
           ref={textareaRef}
           className='h-full bg-input border rounded-md max-sm:rounded-none'
           onChange={e => setClipboard(e.target.value)}
           value={clipboard}
+          placeholder='Paste your text here'
         />
       </section>
     </main>

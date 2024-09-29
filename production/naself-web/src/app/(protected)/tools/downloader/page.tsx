@@ -1,8 +1,10 @@
 import { OpenInNewWindowIcon } from '@radix-ui/react-icons'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
+import { Checkbox } from '@/components/ui/checkbox'
 import { GaugeCircle } from '@/components/ui/gauge'
 import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui/hover-card'
+import { Label } from '@/components/ui/label'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { Textarea } from '@/components/ui/textarea'
 
@@ -14,7 +16,7 @@ export default function DownloaderPage() {
         <p className='text-sm pt-1'>
           All files will be downloaded to{' '}
           <Link
-            className='text-blue-300'
+            className='dark:text-blue-300 text-blue-500'
             href='/files/all?path=/naself-downloads'
           >
             naself-download
@@ -34,6 +36,20 @@ export default function DownloaderPage() {
         <div className='flex justify-end mt-2'>
           <Button className='w-full'>Download</Button>
         </div>
+        <div className='flex justify-start items-center mt-4 gap-2 text-sm'>
+          <Checkbox id='vpn-check' />
+          <Label htmlFor='vpn-check'>Use VPN connection</Label>
+          <p className='text-secondary-foreground'>
+            (You can configure your VPN connection in{' '}
+            <Link
+              className='dark:text-blue-300 text-blue-500'
+              href='/settings/networking'
+            >
+              Networking
+            </Link>{' '}
+            page)
+          </p>
+        </div>
         <div className='flex items-center gap-4 flex-shrink-0 pt-10 justify-between'>
           <h3 className='text font-semibold'>Queue</h3>
           <Button
@@ -43,7 +59,7 @@ export default function DownloaderPage() {
             Cancel all
           </Button>
         </div>
-        <Table>
+        <Table className='mb-16'>
           <TableHeader>
             <TableRow>
               <TableHead>Url</TableHead>
