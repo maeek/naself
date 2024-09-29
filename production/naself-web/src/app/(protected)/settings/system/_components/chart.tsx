@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
-import { LineChart, CartesianGrid, XAxis, Line } from 'recharts'
+import { CartesianGrid, XAxis, Area, AreaChart } from 'recharts'
 import {
   ChartContainer,
   ChartLegend,
@@ -40,7 +40,7 @@ export const SystemChart = ({ cpuData }: { cpuData: [Date, number][] }) => {
       config={chartConfig}
       className='h-full w-full pb-3'
     >
-      <LineChart
+      <AreaChart
         accessibilityLayer
         data={chartData}
         margin={{
@@ -58,14 +58,15 @@ export const SystemChart = ({ cpuData }: { cpuData: [Date, number][] }) => {
         />
         <ChartTooltip content={<ChartTooltipContent formatter={value => `${value as string}%`} />} />
         <ChartLegend content={<ChartLegendContent />} />
-        <Line
+        <Area
           dataKey='cpu'
           type='monotone'
           stroke={`var(--color-cpu)`}
+          fill={`var(--color-cpu)`}
           strokeWidth={2}
           dot={false}
         />
-      </LineChart>
+      </AreaChart>
     </ChartContainer>
   )
 }
