@@ -5,6 +5,8 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 
+export const dynamic = 'force-dynamic'
+
 export default function Login() {
   return (
     <main className='flex items-center w-full flex-col py-12'>
