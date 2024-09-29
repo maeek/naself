@@ -6,10 +6,12 @@ import {
   BookmarkIcon,
   ClipboardIcon,
   ClockIcon,
+  FileEdit,
   FilesIcon,
   FolderSyncIcon,
   HardDriveDownloadIcon,
   LinkIcon,
+  NetworkIcon,
   PackageCheckIcon,
   ServerIcon,
   SettingsIcon,
@@ -22,10 +24,12 @@ import { usePathname } from 'next/navigation'
 
 export default function Sidebar({
   forceMobile,
-  closeNodeSlot
+  closeNodeSlot,
+  onLinkChange
 }: {
   forceMobile?: boolean
   closeNodeSlot?: React.ReactNode
+  onLinkChange?: (href: string) => void
 }) {
   const pathname = usePathname()
 
@@ -33,7 +37,8 @@ export default function Sidebar({
     { name: 'Recent', Icon: ClockIcon, href: '/files/recent' },
     { name: 'All Files', Icon: FilesIcon, href: '/files/all' },
     { name: 'Bookmarks', Icon: BookmarkIcon },
-    { name: 'Shared with me', Icon: Share2Icon }
+    { name: 'Shared with me', Icon: Share2Icon },
+    { name: 'Editor', Icon: FileEdit, href: '/editor' }
   ]
 
   const settingsSections = [
@@ -44,6 +49,7 @@ export default function Sidebar({
     { name: 'Security', Icon: ShieldCheckIcon },
     { name: 'External Storage', Icon: ServerIcon },
     { name: 'Jobs', Icon: PackageCheckIcon },
+    { name: 'Networking', Icon: NetworkIcon },
     { name: 'System', Icon: ServerIcon, href: '/settings/system' }
   ]
 
@@ -52,6 +58,8 @@ export default function Sidebar({
     { name: 'Downloader', Icon: HardDriveDownloadIcon, href: '/tools/downloader' },
     { name: 'Converter', Icon: FolderSyncIcon }
   ]
+
+  if (pathname === '/editor') return null
 
   return (
     <aside
@@ -65,38 +73,18 @@ export default function Sidebar({
             <Link
               key={name}
               href={href || '/'}
+              onClick={() => onLinkChange?.(href || '')}
             >
               <li
                 className={classNames(
-                  'flex gap-3 justify-start items-center px-2 py-1 max-lg:py-2 hover:bg-input rounded-sm text-foreground hover:text-white cursor-pointer',
+                  'flex gap-3 justify-start items-center px-2 py-1 max-lg:py-2 hover:bg-input rounded-sm text-foreground dark:hover:text-white cursor-pointer',
                   { 'bg-input': pathname === href }
                 )}
               >
                 <div className='w-6 h-6 rounded-sm flex justify-center items-center'>
                   <Icon className='w-4 h-4 max-lg:w-5 max-lg:h-5 stroke-current' />
                 </div>
-                <span className='text-sm max-lg:text-lg text-inherit'>{name}</span>
-              </li>
-            </Link>
-          ))}
-        </ul>
-        <h6 className='text-xs pb-2 font-semibold color-secondary px-2 max-lg:text-sm'>Settings</h6>
-        <ul className='w-full pb-6 flex flex-col'>
-          {settingsSections.map(({ name, Icon, href }) => (
-            <Link
-              key={name}
-              href={href || '/'}
-            >
-              <li
-                className={classNames(
-                  'flex gap-3 justify-start items-center px-2 py-1 max-lg:py-2 hover:bg-input rounded-sm text-foreground hover:text-white cursor-pointer',
-                  { 'bg-input': pathname === href }
-                )}
-              >
-                <div className='w-6 h-6 rounded-sm flex justify-center items-center'>
-                  <Icon className='w-4 h-4 max-lg:w-5 max-lg:h-5 stroke-current' />
-                </div>
-                <span className='text-sm max-lg:text-lg text-inherit'>{name}</span>
+                <span className='text-sm max-lg:text-inherit text-inherit'>{name}</span>
               </li>
             </Link>
           ))}
@@ -107,17 +95,40 @@ export default function Sidebar({
             <Link
               key={name}
               href={href || '/'}
+              onClick={() => onLinkChange?.(href || '')}
             >
               <li
                 className={classNames(
-                  'flex gap-3 justify-start items-center px-2 py-1 max-lg:py-2 hover:bg-input rounded-sm text-foreground hover:text-white cursor-pointer',
+                  'flex gap-3 justify-start items-center px-2 py-1 max-lg:py-2 hover:bg-input rounded-sm text-foreground dark:hover:text-white cursor-pointer',
                   { 'bg-input': pathname === href }
                 )}
               >
                 <div className='w-6 h-6 rounded-sm flex justify-center items-center'>
                   <Icon className='w-4 h-4 max-lg:w-5 max-lg:h-5 stroke-current' />
                 </div>
-                <span className='text-sm max-lg:text-lg text-inherit'>{name}</span>
+                <span className='text-sm max-lg:text-inherit text-inherit'>{name}</span>
+              </li>
+            </Link>
+          ))}
+        </ul>
+        <h6 className='text-xs pb-2 font-semibold color-secondary px-2 max-lg:text-sm'>Settings</h6>
+        <ul className='w-full pb-6 flex flex-col'>
+          {settingsSections.map(({ name, Icon, href }) => (
+            <Link
+              key={name}
+              href={href || '/'}
+              onClick={() => onLinkChange?.(href || '')}
+            >
+              <li
+                className={classNames(
+                  'flex gap-3 justify-start items-center px-2 py-1 max-lg:py-2 hover:bg-input rounded-sm text-foreground dark:hover:text-white cursor-pointer',
+                  { 'bg-input': pathname === href }
+                )}
+              >
+                <div className='w-6 h-6 rounded-sm flex justify-center items-center'>
+                  <Icon className='w-4 h-4 max-lg:w-5 max-lg:h-5 stroke-current' />
+                </div>
+                <span className='text-sm max-lg:text-inherit text-inherit'>{name}</span>
               </li>
             </Link>
           ))}

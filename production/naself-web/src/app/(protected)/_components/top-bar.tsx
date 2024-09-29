@@ -1,4 +1,5 @@
-import { CSSProperties } from 'react'
+'use client'
+import { CSSProperties, useState } from 'react'
 import classNames from 'classnames'
 import { LogOutIcon, MenuIcon, SettingsIcon, SidebarCloseIcon, UserIcon } from 'lucide-react'
 import Link from 'next/link'
@@ -18,6 +19,8 @@ import { ThemeToggle } from '@/components/ui/theme-toggle'
 import Sidebar from './sidebar'
 
 export const TopBarProtected = () => {
+  const [isSheetOpen, setIsSheetOpen] = useState(false)
+
   const sectionClasses = 'flex items-center h-full px-4 gap-x-4 max-sm:px-2 sm:w-[33%]'
 
   return (
@@ -30,8 +33,11 @@ export const TopBarProtected = () => {
       <div
         className={classNames(sectionClasses, 'justify-center flex-initial w-[26rem] max-sm:w-full max-w-screen-sm')}
       >
-        <div className='flex items-center lg:hidden'>
-          <Sheet>
+        <div className='items-center hidden max-sm:flex'>
+          <Sheet
+            open={isSheetOpen}
+            onOpenChange={setIsSheetOpen}
+          >
             <SheetTrigger>
               <MenuIcon className='w-6 h-6 ml-2' />
             </SheetTrigger>
@@ -41,6 +47,7 @@ export const TopBarProtected = () => {
             >
               <Sidebar
                 forceMobile
+                onLinkChange={() => setIsSheetOpen(false)}
                 closeNodeSlot={
                   <div className='w-full p-4 sticky top-0 bg-layout border-b flex justify-between items-center'>
                     <SheetClose className='flex gap-2 items-center'>
