@@ -1,5 +1,6 @@
 'use client'
-import { CSSProperties, useState } from 'react'
+
+import { CSSProperties, useEffect, useRef, useState } from 'react'
 import classNames from 'classnames'
 import { LogOutIcon, MenuIcon, SettingsIcon, SidebarCloseIcon, UserIcon } from 'lucide-react'
 import Link from 'next/link'
@@ -20,8 +21,18 @@ import Sidebar from './sidebar'
 
 export const TopBarProtected = () => {
   const [isSheetOpen, setIsSheetOpen] = useState(false)
+  const searchRef = useRef<HTMLInputElement>(null)
 
   const sectionClasses = 'flex items-center h-full px-4 gap-x-4 max-sm:px-2 sm:w-[33%]'
+
+  useEffect(() => {
+    document.addEventListener('keydown', e => {
+      if (e.key === '/') {
+        e.preventDefault()
+        searchRef.current?.focus()
+      }
+    })
+  }, [])
 
   return (
     <div className='z-50 flex justify-between h-16 w-dvw border-b border-b-layout-border bg-layout flex-shrink-0 sticky top-0 max-w-full'>
@@ -64,9 +75,10 @@ export const TopBarProtected = () => {
           </Sheet>
         </div>
         <Input
-          placeholder='Search files or execute an action'
+          placeholder='Type "/" to search'
           type='search'
           className='h-10 placeholder:text-ellipsis'
+          ref={searchRef}
         />
       </div>
       <div className={classNames(sectionClasses, 'justify-end')}>

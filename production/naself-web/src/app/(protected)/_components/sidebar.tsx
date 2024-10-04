@@ -35,7 +35,7 @@ export default function Sidebar({
 
   const filesSections = [
     { name: 'Recent', Icon: ClockIcon, href: '/files/recent' },
-    { name: 'All Files', Icon: FilesIcon, href: '/files/all' },
+    { name: 'All Files', Icon: FilesIcon, href: '/files' },
     { name: 'Bookmarks', Icon: BookmarkIcon },
     { name: 'Shared with me', Icon: Share2Icon },
     { name: 'Editor', Icon: FileEdit, href: '/editor' }

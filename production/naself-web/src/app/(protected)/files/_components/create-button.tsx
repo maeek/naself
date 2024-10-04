@@ -23,10 +23,8 @@ export const CreateButton = () => {
       </DropdownMenuTrigger>
       <DropdownMenuContent
         className='w-56'
-        align='start'
+        align='end'
       >
-        {/* <DropdownMenuLabel>My Account</DropdownMenuLabel>
-              <DropdownMenuSeparator /> */}
         <DropdownMenuItem>File</DropdownMenuItem>
         <DropdownMenuItem>Folder</DropdownMenuItem>
         <DropdownMenuItem>Share</DropdownMenuItem>
