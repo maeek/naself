@@ -13,6 +13,7 @@ export interface FolderType {
   modifiedAt: string
   tag?: string
   color?: string
+  shared?: boolean
 }
 
 export const Folder = ({ folder }: { folder: FolderType }) => {
@@ -41,7 +42,12 @@ export const Folder = ({ folder }: { folder: FolderType }) => {
           className='w-6 h-6'
         />
       </div>
-      <div className='text-ellipsis font-medium text-sm overflow-hidden px-2 whitespace-nowrap'>{folder.name}</div>
+      <div className='flex flex-col'>
+        <div className='text-ellipsis font-medium text-sm overflow-hidden px-2 whitespace-nowrap'>{folder.name}</div>
+        <div className='text-ellipsis text-xs text-secondary-foreground overflow-hidden px-2 whitespace-nowrap'>
+          12 items
+        </div>
+      </div>
     </button>
   )
 }

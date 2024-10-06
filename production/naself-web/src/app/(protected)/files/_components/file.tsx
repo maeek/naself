@@ -95,7 +95,12 @@ export const File = ({ file }: { file: FileType }) => {
               )}
             </AspectRatio>
           </div>
-          <div className='text-ellipsis font-medium text-sm overflow-hidden py-3 px-2 nowrap'>{file.name}</div>
+          <div className='flex flex-col py-3 px-2'>
+            <div className='text-ellipsis font-medium text-sm overflow-hidden nowrap'>{file.name}</div>
+            <div className='text-ellipsis text-xs text-secondary-foreground overflow-hidden whitespace-nowrap'>
+              You · {file.size} · {file.modifiedAt}
+            </div>
+          </div>
         </button>
       </ContextMenuTrigger>
       <ContextMenuContent className='w-64'>

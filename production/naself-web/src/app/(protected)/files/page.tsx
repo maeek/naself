@@ -1,16 +1,9 @@
 'use client'
 
 import { Suspense } from 'react'
-import { ArrowUpIcon, HomeIcon, ListFilter } from 'lucide-react'
+import { ArrowUpIcon, ListFilter } from 'lucide-react'
+import importDynamic from 'next/dynamic'
 import { useSearchParams } from 'next/navigation'
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator
-} from '@/components/ui/breadcrumb'
 import { Button } from '@/components/ui/button'
 import { CreateButton } from './_components/create-button'
 import { File, FileType } from './_components/file'
@@ -19,6 +12,10 @@ import { Folder, FolderType } from './_components/folder'
 import { FoldersLayout } from './_components/folders-layout'
 import { LayoutButton } from './_components/layout-button'
 import { FileTags } from './_components/tags'
+
+export const dynamic = 'force-dynamic'
+
+const PathBreadCrumbs = importDynamic(() => import('./_components/breadcrumbs'), { ssr: false })
 
 const files = [
   {
@@ -38,7 +35,7 @@ const files = [
       name: isFile ? `design_${i}.${ext}` : `Folder ${i}`,
       type: isFile ? 'file' : 'folder',
       ext: isFile ? ext : '',
-      size: isFile ? `${Math.random() * 155} MB` : '',
+      size: isFile ? `${Math.floor(Math.random() * 155)} MB` : '',
       createdAt: '2021-09-01',
       modifiedAt: '2021-09-01',
       tag: 'documents',
@@ -52,7 +49,7 @@ const files = [
       name: isFile ? `media_${i}.${ext}` : `Media folder ${i}`,
       type: isFile ? 'file' : 'folder',
       ext: isFile ? ext : '',
-      size: isFile ? `${Math.random() * 155} MB` : '',
+      size: isFile ? `${Math.floor(Math.random() * 155)} MB` : '',
       createdAt: '2021-09-01',
       modifiedAt: '2021-09-01',
       tag: 'media',
@@ -65,7 +62,7 @@ const files = [
       name: `img_${i}.${ext}`,
       type: 'file',
       ext,
-      size: `${Math.random() * 4} MB`,
+      size: `${Math.floor(Math.random() * 4)} MB`,
       createdAt: '2021-09-01',
       modifiedAt: '2021-09-01',
       tag: 'images',
@@ -90,7 +87,7 @@ const files = [
   })
 ]
 
-export default function AllFiles() {
+function FilesRenderer() {
   const searchParams = useSearchParams()
   const tag = searchParams.get('tag')
 
@@ -106,26 +103,9 @@ export default function AllFiles() {
         <div className='flex items-center justify-between w-full'>
           <div className='flex items-center'>
             <ArrowUpIcon className='mr-6 cursor-pointer hover:text-sky-400 flex-shrink-0' />
-            <Breadcrumb>
-              <BreadcrumbList>
-                <BreadcrumbItem>
-                  <BreadcrumbLink
-                    href='/files/all'
-                    className='flex items-center'
-                  >
-                    <HomeIcon className='w-4 h-4 mr-2 stroke-accent-foreground' /> Home
-                  </BreadcrumbLink>
-                </BreadcrumbItem>
-                <BreadcrumbSeparator />
-                <BreadcrumbItem>
-                  <BreadcrumbLink href='/files/all?path=components'>Components</BreadcrumbLink>
-                </BreadcrumbItem>
-                <BreadcrumbSeparator />
-                <BreadcrumbItem>
-                  <BreadcrumbPage>Design</BreadcrumbPage>
-                </BreadcrumbItem>
-              </BreadcrumbList>
-            </Breadcrumb>
+            <Suspense fallback={null}>
+              <PathBreadCrumbs />
+            </Suspense>
           </div>
         </div>
       </section>
@@ -187,5 +167,13 @@ export default function AllFiles() {
 
       <div className='py-6' />
     </main>
+  )
+}
+
+export default function Files() {
+  return (
+    <Suspense fallback={null}>
+      <FilesRenderer />
+    </Suspense>
   )
 }
